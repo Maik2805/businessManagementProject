@@ -81,7 +81,10 @@ public class UsuarioModel {
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "UsuarioModel{" + "email=" + email + ", tipoIdentificacion=" + tipoIdentificacion + ", identificacion=" + identificacion + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", fechaCreacion=" + fechaCreacion + ", isDeleted=" + isDeleted + '}';
+    }
     
 }
