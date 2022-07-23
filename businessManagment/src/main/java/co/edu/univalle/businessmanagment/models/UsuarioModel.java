@@ -18,6 +18,13 @@ public class UsuarioModel {
     private Date fechaCreacion;
     private boolean isDeleted;
 
+    public UsuarioModel() {
+    }
+
+    public UsuarioModel(String email) {
+        this.email = email;
+    }
+
     public String getEmail() {
         return email;
     }
