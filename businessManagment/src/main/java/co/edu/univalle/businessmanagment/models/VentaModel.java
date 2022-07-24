@@ -12,8 +12,9 @@ import java.util.Date;
  * @author miccarurb
  */
 public class VentaModel {
-    private String id_venta;
+    private String idVenta;
     private UsuarioModel usuario;
+    private ClienteModel cliente;
     private double subtotal;
     private double totalIva;
     private double totalNeto;
@@ -22,12 +23,21 @@ public class VentaModel {
     private Date fechaCreacion;
     private boolean isDeleted;
 
-    public String getId_venta() {
-        return id_venta;
+    public VentaModel() {
     }
 
-    public void setId_venta(String id_venta) {
-        this.id_venta = id_venta;
+    public VentaModel(String id_venta, UsuarioModel usuario, ClienteModel cliente) {
+        this.idVenta = id_venta;
+        this.usuario = usuario;
+        this.cliente = cliente;
+    }
+
+    public String getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(String id_venta) {
+        this.idVenta = id_venta;
     }
 
     public UsuarioModel getUsuario() {
@@ -36,6 +46,14 @@ public class VentaModel {
 
     public void setUsuario(UsuarioModel usuario) {
         this.usuario = usuario;
+    }
+
+    public ClienteModel getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteModel cliente) {
+        this.cliente = cliente;
     }
 
     public double getSubtotal() {
@@ -92,6 +110,11 @@ public class VentaModel {
 
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    @Override
+    public String toString() {
+        return "VentaModel{" + "idVenta=" + idVenta + ", usuario=" + usuario + ", cliente=" + cliente + ", subtotal=" + subtotal + ", totalIva=" + totalIva + ", totalNeto=" + totalNeto + ", totalBruto=" + totalBruto + ", totalDescuento=" + totalDescuento + ", fechaCreacion=" + fechaCreacion + ", isDeleted=" + isDeleted + '}';
     }
     
     
