@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author camilo
  */
-public class ClientesModel {
+public class ClienteModel {
     
     //Primary key
     private String identificacion ;
@@ -23,10 +23,14 @@ public class ClientesModel {
     private boolean isDeleted;
 
     //Contructores
-    public ClientesModel() {
+    public ClienteModel() {
     }
 
-    public ClientesModel(String intentificacion, String nombre) {
+    public ClienteModel(String identificacion) {
+        this.identificacion = identificacion;
+    }
+
+    public ClienteModel(String intentificacion, String nombre) {
         this.identificacion = intentificacion;
         this.nombre = nombre;
     }
@@ -88,16 +92,10 @@ public class ClientesModel {
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-    
-    
-    
-    
 
- 
-    
-    
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        return "ClienteModel{" + "identificacion=" + identificacion + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", telefono=" + telefono + ", fechaCreacion=" + fechaCreacion + ", isDeleted=" + isDeleted + '}';
+    }
+
 }
