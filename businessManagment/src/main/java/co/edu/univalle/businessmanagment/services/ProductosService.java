@@ -190,4 +190,8 @@ public class ProductosService {
         return producto;
     }
 
+    public int cantidadProductosDisponibles(ProductoModel producto) {
+        return 10;
+    }
+
 }

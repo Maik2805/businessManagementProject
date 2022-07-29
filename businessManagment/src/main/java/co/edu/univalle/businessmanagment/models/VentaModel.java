@@ -5,7 +5,9 @@
  */
 package co.edu.univalle.businessmanagment.models;
 
+import co.edu.univalle.businessmanagment.utils.UuidHelper;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -22,8 +24,10 @@ public class VentaModel {
     private double totalDescuento;
     private Date fechaCreacion;
     private boolean isDeleted;
+    private List<DetalleVentaModel> detalle;
 
     public VentaModel() {
+        idVenta = UuidHelper.generate(6);
     }
 
     public VentaModel(String id_venta, UsuarioModel usuario, ClienteModel cliente) {
@@ -110,6 +114,27 @@ public class VentaModel {
 
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public List<DetalleVentaModel> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<DetalleVentaModel> detalle) {
+        this.detalle = detalle;
+    }
+    
+    public void agregarDetalle(DetalleVentaModel detalle){
+        this.detalle.add(detalle);
+    }
+    
+    public void calcularTotales(){
+        totalNeto = 0;
+        totalBruto = 0;
+        for (DetalleVentaModel detalleVenta : detalle) {
+            totalNeto += detalleVenta.getTotalNeto();
+            totalBruto += detalleVenta.getTotalBruto();
+        }
     }
 
     @Override
