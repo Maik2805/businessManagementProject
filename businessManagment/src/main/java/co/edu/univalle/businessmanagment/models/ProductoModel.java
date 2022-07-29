@@ -10,10 +10,10 @@ import java.util.Date;
  *
  * @author camilo
  */
-public class ProductosModel {
+public class ProductoModel {
     
     //Primary key
-    private int idProducto;
+    private String idProducto;
     
     private String nombre;
     private double precioVentaBase;
@@ -23,29 +23,29 @@ public class ProductosModel {
 
     //Constructores 
     
-    public ProductosModel() {
+    public ProductoModel() {
     }
 
-    public ProductosModel(int idProducto) {
+    public ProductoModel(String idProducto) {
         this.idProducto = idProducto;
     }
 
     //Getter and Setter
     
-    public int getIdProducto() {
+    public String getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(int idProducto) {
+    public void setIdProducto(String idProducto) {
         this.idProducto = idProducto;
     }
 
-    public String getNombreProducto() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombreProducto(String nombreProducto) {
-        this.nombre = nombreProducto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public double getPrecioVentaBase() {
