@@ -10,23 +10,23 @@ import java.util.Date;
  *
  * @author camilo
  */
-public class ProveedorModel {
-    
-    //Primary key
+public class LoteProduccionModel {
     private String identificacion;
     
-    private String nombre;
+    private Date fechaInicio;
+    private Date fechaFin;
+    private String estado;
     private Date fechaCreacion;
     private boolean isDeleted;
-
-    //Constructores
-    public ProveedorModel() {
+    
+    //Constructores 
+    public LoteProduccionModel() {
     }
 
-    public ProveedorModel(String identificacion) {
+    public LoteProduccionModel(String identificacion) {
         this.identificacion = identificacion;
     }
-
+    
     //Getter and Setter
     public String getIdentificacion() {
         return identificacion;
@@ -36,12 +36,28 @@ public class ProveedorModel {
         this.identificacion = identificacion;
     }
 
-    public String getNombre() {
-        return nombre;
+    public Date getFechaInicio() {
+        return fechaInicio;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Date getFechaCreacion() {
@@ -52,15 +68,13 @@ public class ProveedorModel {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public boolean getIsDeleted() {
+    public boolean isIsDeleted() {
         return isDeleted;
     }
 
     public void setIsDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
-
-   
     
     
 }
