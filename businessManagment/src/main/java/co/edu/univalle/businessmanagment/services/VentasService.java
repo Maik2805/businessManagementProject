@@ -7,6 +7,7 @@ package co.edu.univalle.businessmanagment.services;
 
 import co.edu.univalle.businessmanagment.config.DbConnection;
 import co.edu.univalle.businessmanagment.models.ClienteModel;
+import co.edu.univalle.businessmanagment.models.DetalleVentaModel;
 import co.edu.univalle.businessmanagment.models.UsuarioModel;
 import co.edu.univalle.businessmanagment.models.VentaModel;
 import java.sql.Connection;
@@ -38,7 +39,7 @@ public class VentasService {
         try (Connection conn = DbConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
             VentaModel venta = null;
-            
+
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -73,8 +74,8 @@ public class VentasService {
             throw e;
         }
     }
-    
-    public void findVentaRelations(VentaModel venta) throws SQLException{
+
+    public void findVentaRelations(VentaModel venta) throws SQLException {
         venta.setUsuario(usuariosService.findUsuarioByEmail(venta.getUsuario().getEmail()));
         venta.setCliente(clienteService.findClienteByIdentificacion(venta.getCliente().getIdentificacion()));
     }
@@ -103,8 +104,7 @@ public class VentasService {
         }
         return result;
     }
-    
-    
+
     public int createVenta(VentaModel venta) throws SQLException, Exception {
         if (venta.getIdVenta() == null || venta.getIdVenta().trim().isEmpty()) {
             throw new Exception("El campo 'id venta' no puede estar vacío");
@@ -129,8 +129,8 @@ public class VentasService {
         }
         return result;
     }
-    
-    public int deleteVenta(String idVenta) throws SQLException{
+
+    public int deleteVenta(String idVenta) throws SQLException {
         int result = 0;
         String sql = "UPDATE business.ventas "
                 + "SET is_deleted = true "
@@ -146,23 +146,23 @@ public class VentasService {
         }
         return result;
     }
-    
-    public int deleteVenta(VentaModel venta) throws Exception{
+
+    public int deleteVenta(VentaModel venta) throws Exception {
         if (venta.getIdVenta() == null || venta.getIdVenta().trim().isEmpty()) {
             throw new Exception("El campo 'id venta' no puede estar vacío");
         }
         return deleteVenta(venta.getIdVenta());
     }
-    
-    public boolean checkVentaExist(String idVenta, boolean countDeletes) throws SQLException{
+
+    public boolean checkVentaExist(String idVenta, boolean countDeletes) throws SQLException {
         String SQL_SELECT = "SELECT EXISTS (SELECT 1 FROM business.ventas WHERE id_venta = ?";
-        SQL_SELECT += !countDeletes ? " AND is_deleted is false )" : " )";  
+        SQL_SELECT += !countDeletes ? " AND is_deleted is false )" : " )";
         try (Connection conn = DbConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
             ResultSet resultSet;
             preparedStatement.setString(1, idVenta);
             resultSet = preparedStatement.executeQuery();
-            boolean resultado = false; 
+            boolean resultado = false;
             while (resultSet.next()) {
                 resultado = resultSet.getBoolean(1);
             }
@@ -198,7 +198,35 @@ public class VentasService {
         venta.setFechaCreacion(resultSet.getDate("fecha_creacion"));
         venta.setIsDeleted(resultSet.getBoolean("is_deleted"));
         return venta;
+    }
 
+    public int createDetalleVenta(String idVenta,DetalleVentaModel detalle) throws SQLException, Exception {
+        if (idVenta == null || idVenta.trim().isEmpty()) {
+            throw new Exception("El campo 'id venta' no puede estar vacío");
+        }
+        if (detalle.getProducto().getIdProducto() == null || detalle.getProducto().getIdProducto().trim().isEmpty()) {
+            throw new Exception("El campo 'Producto' no puede estar vacío");
+        }
+        int result = 0;
+        String sql = "INSERT INTO business.detalle_ventas (id_detalle, id_venta, id_producto, cantidad,"
+                + " total_bruto, total_neto, descuento, es_mayorista)"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
+        try (Connection conn = DbConnection.getConnection();
+                PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, detalle.getIdDetalle());
+            preparedStatement.setString(2, idVenta);
+            preparedStatement.setString(3, detalle.getProducto().getIdProducto());
+            preparedStatement.setInt(4, detalle.getCantidad());
+            preparedStatement.setDouble(5, detalle.getTotalBruto());
+            preparedStatement.setDouble(6, detalle.getTotalNeto());
+            preparedStatement.setDouble(7, detalle.getDescuento());
+            preparedStatement.setBoolean(8, detalle.isEsMayorista());
+
+            result = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        }
+        return result;
     }
 
 }
