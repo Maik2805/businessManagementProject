@@ -7,7 +7,6 @@ package co.edu.univalle.businessmanagment.services;
 
 import co.edu.univalle.businessmanagment.config.DbConnection;
 import co.edu.univalle.businessmanagment.models.ProductoModel;
-import co.edu.univalle.businessmanagment.models.ProductoModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -188,10 +187,6 @@ public class ProductosService {
         producto.setFechaCreacion(resultSet.getDate("fecha_creacion"));
         producto.setIsDeleted(resultSet.getBoolean("is_deleted"));
         return producto;
-    }
-
-    public int cantidadProductosDisponibles(ProductoModel producto) {
-        return 10;
     }
 
 }
