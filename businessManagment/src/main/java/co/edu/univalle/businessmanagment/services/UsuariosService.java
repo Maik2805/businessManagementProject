@@ -24,13 +24,13 @@ public class UsuariosService {
 
     private static final Logger logger = LogManager.getLogger(UsuariosService.class);
 
-    public UsuarioModel findUsuarioByEmail(String username) throws SQLException {
+    public UsuarioModel findUsuarioByEmail(String email) throws SQLException {
         final String SQL_SELECT = "SELECT * FROM business.usuarios where email = ? and is_deleted is false";
         try (Connection conn = DbConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
             UsuarioModel usuario = null;
             ResultSet resultSet;
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, email);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 usuario = resulsetToModel(resultSet);
@@ -43,6 +43,23 @@ public class UsuariosService {
             throw e;
         }
 
+    }
+    
+    public List<UsuarioModel> findUsuarioByEmailFilter(String email) throws SQLException {
+        final String SQL_SELECT = "SELECT * FROM business.usuarios WHERE email LIKE '?' and is_deleted is false";
+        List<UsuarioModel> usuarios = new ArrayList<>();
+        try (Connection conn = DbConnection.getConnection();
+                PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+            preparedStatement.setString(1, "%"+email+"%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                usuarios.add(resulsetToModel(resultSet));
+            }
+
+            return usuarios;
+        } catch (SQLException e) {
+            throw e;
+        }
     }
 
     public List<UsuarioModel> getAllUsuarios() throws SQLException {
@@ -154,7 +171,7 @@ public class UsuariosService {
         }
     }
     
-    public int createOrUpdateUsuario(UsuarioModel usuario) throws Exception{
+    public int createOrUpdateUsuario(UsuarioModel usuario) throws SQLException, Exception{
         if (usuario.getEmail() == null || usuario.getEmail().trim().isEmpty()) {
             throw new Exception("El campo Email no puede estar vacío");
         }
