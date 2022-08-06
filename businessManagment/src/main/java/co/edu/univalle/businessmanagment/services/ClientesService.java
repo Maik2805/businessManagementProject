@@ -61,6 +61,24 @@ public class ClientesService {
             throw e;
         }
     }
+    
+    public List<ClienteModel> findClienteByIdentificationFilter(String filter) throws SQLException {
+        final String SQL_SELECT = "SELECT * FROM business.clientes WHERE identificacion LIKE '?' and is_deleted is false";
+        List<ClienteModel> clientes = new ArrayList<>();
+        try (Connection conn = DbConnection.getConnection();
+                PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+            preparedStatement.setString(1, "%"+filter+"%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                clientes.add(resulsetToModel(resultSet));
+            }
+            preparedStatement.close();
+            resultSet.close();
+            return clientes;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 
     public int updateCliente(ClienteModel cliente) throws SQLException, Exception {
         if (cliente.getIdentificacion()== null || cliente.getIdentificacion().trim().isEmpty()) {
