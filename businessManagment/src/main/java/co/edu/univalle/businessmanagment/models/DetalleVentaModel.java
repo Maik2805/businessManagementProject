@@ -7,12 +7,8 @@ package co.edu.univalle.businessmanagment.models;
 
 import co.edu.univalle.businessmanagment.utils.UuidHelper;
 
-/**
- *
- * @author miccarurb
- */
 public class DetalleVentaModel {
-    private String id_detalle;
+    private String idDetalle;
     private VentaModel venta;
     private ProductoModel producto;
     private int cantidad;
@@ -22,19 +18,19 @@ public class DetalleVentaModel {
     private boolean esMayorista;
 
     public DetalleVentaModel() {
-        id_detalle = UuidHelper.generate();
+        idDetalle = UuidHelper.generate();
     }
 
     public DetalleVentaModel(String id_detalle) {
-        this.id_detalle = id_detalle;
+        this.idDetalle = id_detalle;
     }
 
-    public String getId_detalle() {
-        return id_detalle;
+    public String getIdDetalle() {
+        return idDetalle;
     }
 
-    public void setId_detalle(String id_detalle) {
-        this.id_detalle = id_detalle;
+    public void setIdDetalle(String idDetalle) {
+        this.idDetalle = idDetalle;
     }
 
     public VentaModel getVenta() {
