@@ -23,15 +23,16 @@ public class DbConnection {
 
     private static Connection connection;
 
-    public static Connection getConnection() throws IOException, SQLException {
-        if (connection != null) {
+    public static Connection getConnection() throws SQLException {
+        Runtime.getRuntime().addShutdownHook(new MiShDwnHook());
+        if (connection != null && !connection.isClosed()) {
             System.out.println("Connected to the database!");
             return connection;
         }
         return createConnection();
     }
 
-    private static Connection createConnection() throws SQLException, IOException {
+    private static Connection createConnection() throws SQLException {
         try (InputStream input = DbConnection.class.getClassLoader().getResourceAsStream("config.properties")) {
             Properties prop = new Properties();
             prop.load(input);
@@ -42,7 +43,22 @@ public class DbConnection {
             return connection;
         } catch (SQLException | IOException e) {
             logger.error("Error creando la conexión a la abse de datos",e);
-            throw e;
+            throw new SQLException(e);
+        }
+    }
+    
+    static class MiShDwnHook extends Thread {
+        //Justo antes de finaliza el programa la JVM invocará
+        //este método donde podemos cerra la conexión
+        @Override
+        public void run(){
+            try{
+                Connection con = DbConnection.getConnection();
+                con.close();                     
+            }
+            catch (Exception ex){
+                logger.error(ex);
+            }
         }
     }
 }
