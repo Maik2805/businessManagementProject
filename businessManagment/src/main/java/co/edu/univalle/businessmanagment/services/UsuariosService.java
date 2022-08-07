@@ -45,12 +45,13 @@ public class UsuariosService {
 
     }
     
-    public List<UsuarioModel> findUsuarioByEmailFilter(String email) throws SQLException {
-        final String SQL_SELECT = "SELECT * FROM business.usuarios WHERE email LIKE '?' and is_deleted is false";
+    public List<UsuarioModel> findUsuarioByFilter(String email) throws SQLException {
+        final String SQL_SELECT = "SELECT * FROM business.usuarios WHERE (email LIKE ? OR identificacion LIKE ?) and is_deleted is false";
         List<UsuarioModel> usuarios = new ArrayList<>();
         try (Connection conn = DbConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
             preparedStatement.setString(1, "%"+email+"%");
+            preparedStatement.setString(2, "%"+email+"%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 usuarios.add(resulsetToModel(resultSet));
