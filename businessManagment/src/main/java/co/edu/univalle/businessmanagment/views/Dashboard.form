@@ -517,7 +517,7 @@
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="añadirCliBtn" min="-2" pref="111" max="-2" attributes="0"/>
+                                      <Component id="btnAddCliente" min="-2" pref="111" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -569,7 +569,7 @@
                                       <Component id="txt8" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="añadirCliBtn" min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Component id="btnAddCliente" min="-2" pref="37" max="-2" attributes="0"/>
                                           <Component id="txtIdentificacionCliente" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -641,7 +641,7 @@
                         <Property name="orientation" type="int" value="1"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="a&#xf1;adirCliBtn">
+                    <Component class="javax.swing.JButton" name="btnAddCliente">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -695,14 +695,14 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtFiltroIdentificacionCliente" min="-2" pref="185" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="buscarCliBtn" min="-2" pref="111" max="-2" attributes="0"/>
+                              <Component id="btnBuscarCliente" min="-2" pref="111" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="195" max="-2" attributes="0"/>
-                              <Component id="editarCliBtn" min="-2" pref="111" max="-2" attributes="0"/>
+                              <Component id="btnEditarCliente" min="-2" pref="111" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="borrarCliBtn" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="btnBorrarCliente" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -719,14 +719,14 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtFiltroIdentificacionCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buscarCliBtn" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarCliente" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="199" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="borrarCliBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="editarCliBtn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="btnBorrarCliente" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="btnEditarCliente" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           </Group>
@@ -747,7 +747,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFiltroIdentificacionClienteActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="buscarCliBtn">
+                    <Component class="javax.swing.JButton" name="btnBuscarCliente">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -767,10 +767,10 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscarCliBtnActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarClienteActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="editarCliBtn">
+                    <Component class="javax.swing.JButton" name="btnEditarCliente">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -790,10 +790,10 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editarCliBtnActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarClienteActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="borrarCliBtn">
+                    <Component class="javax.swing.JButton" name="btnBorrarCliente">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>

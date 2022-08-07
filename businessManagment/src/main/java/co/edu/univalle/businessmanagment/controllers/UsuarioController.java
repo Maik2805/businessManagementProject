@@ -179,7 +179,7 @@ public class UsuarioController {
             if (etiqueta != null) {
                 etiqueta.setText("Cargando");
             }
-            logger.info("CargaUsuarios en proceso;");
+            logger.info(String.format("CargaUsuarios[%s] en proceso", metodo));
             switch (metodo) {
                 case "CARGA_USUARIOS":
                     cargarUsuarios();
@@ -207,7 +207,7 @@ public class UsuarioController {
             if (etiqueta != null) {
                 etiqueta.setText("");
             }
-            logger.info(String.format("CargaUsuarios[%s] Finalizada;", metodo));
+            logger.info(String.format("CargaUsuarios[%s] Finalizada", metodo));
         }
 
     }
