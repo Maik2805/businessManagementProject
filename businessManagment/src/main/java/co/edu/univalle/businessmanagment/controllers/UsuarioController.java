@@ -7,10 +7,13 @@ package co.edu.univalle.businessmanagment.controllers;
 
 import co.edu.univalle.businessmanagment.models.UsuarioModel;
 import co.edu.univalle.businessmanagment.services.UsuariosService;
+import co.edu.univalle.businessmanagment.views.Dashboard;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -25,21 +28,26 @@ public class UsuarioController {
     UsuariosService usuarioService;
     List<UsuarioModel> usuarios;
     UsuarioModel usuario;
+    Dashboard vista;
 
-
-    public UsuarioController() {
+    public UsuarioController(Dashboard view) {
+        vista = view;
         usuarios = new ArrayList();
+        usuarioService = new UsuariosService();
         nuevoUsuario();
+        CargaUsuarios cargaUsuarios = new CargaUsuarios(null);
+        cargaUsuarios.execute();
     }
 
-    public UsuarioController(UsuariosService usuarioService) {
-        this();
-        this.usuarioService = usuarioService;
-    }
+//    public UsuarioController(UsuariosService usuarioService) {
+//        this();
+//        this.usuarioService = usuarioService;
+//    }
 
     public void cargarUsuarios() {
         try {
             usuarios = usuarioService.getAllUsuarios();
+            vista.setUsuariosTableData(usuarios);
         } catch (SQLException ex) {
             logger.error(ex);
         }
@@ -49,6 +57,7 @@ public class UsuarioController {
         String filtro = ""; // Completar con el buscador de la vista
         try {
             usuarios = usuarioService.findUsuarioByEmailFilter(filtro);
+            vista.setUsuariosTableData(usuarios);
         } catch (SQLException ex) {
             logger.error(ex);
         }
@@ -70,6 +79,28 @@ public class UsuarioController {
             logger.error(ex);
             JOptionPane.showMessageDialog(null, "ERROR :" + ex.getMessage());
         }
+    }
+    
+    class CargaUsuarios extends SwingWorker<Boolean, Integer> {
+        JLabel etiqueta;
+        
+        public CargaUsuarios(JLabel label){
+            etiqueta = label;
+        }
+        @Override
+        protected Boolean doInBackground() throws Exception {
+                if(etiqueta != null) etiqueta.setText("Cargando");
+                logger.info("CargaUsuarios en proceso;");
+                cargarUsuarios();
+            return true;
+        }
+        
+        @Override
+        protected void done() {
+            if(etiqueta != null) etiqueta.setText("");
+            logger.info("CargaUsuarios Finalizada;");
+        }
+
     }
 
 }

@@ -5,6 +5,11 @@
  */
 package co.edu.univalle.businessmanagment;
 
+import co.edu.univalle.businessmanagment.controllers.ClienteController;
+import co.edu.univalle.businessmanagment.controllers.UsuarioController;
+import co.edu.univalle.businessmanagment.views.Dashboard;
+import co.edu.univalle.businessmanagment.views.SplashScreen;
+
 /**
  *
  * @author miccarurb
@@ -12,7 +17,13 @@ package co.edu.univalle.businessmanagment;
 public class Main {
     
     public static void main(String[] args) {
-        
+        Dashboard home = new Dashboard();
+        SplashScreen initialView = new SplashScreen(home);
+        initialView.loadSplashScreen(home);
+        ClienteController clienteController = new ClienteController(home);
+        UsuarioController usuarioController = new UsuarioController(home);
+//        home.setTitle("Sistema de Gestión");
+//        home.setVisible(true);
     }
     
 }
