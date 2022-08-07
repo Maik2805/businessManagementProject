@@ -47,8 +47,6 @@ public class UsuarioController {
     public void cargarUsuarios() {
         try {
             usuarios = usuarioService.getAllUsuarios();
-            logger.info("USUARIOS ENCONTRADOS: "+ usuarios.size());
-            System.out.println("USUARIOS ENCONTRADOS: "+ usuarios.size());
             vista.setUsuariosTableData(usuarios);
         } catch (SQLException ex) {
             logger.error(ex);
@@ -101,7 +99,6 @@ public class UsuarioController {
         protected void done() {
             if(etiqueta != null) etiqueta.setText("");
             logger.info("CargaUsuarios Finalizada;");
-            logger.info("CargaUsuarios Finalizada;-->" + usuarios.size());
         }
 
     }
