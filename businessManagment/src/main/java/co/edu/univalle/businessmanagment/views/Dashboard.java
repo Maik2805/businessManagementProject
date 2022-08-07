@@ -93,7 +93,6 @@ public class Dashboard extends javax.swing.JFrame {
         borrarCliBtn = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
         btnUsVolver1 = new javax.swing.JButton();
         panelProveedores = new javax.swing.JPanel();
         datosProveedores = new javax.swing.JPanel();
@@ -102,7 +101,6 @@ public class Dashboard extends javax.swing.JFrame {
         txtNombreProveedor = new javax.swing.JTextField();
         txtIdentificacionProveedor = new javax.swing.JTextField();
         añadirProBtn = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
         registroProveedores = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaProveedores = new javax.swing.JTable();
@@ -229,7 +227,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         tablaUsuarios.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tablaUsuarios.setModel(usuariosTableModel);
-        tablaUsuarios.setRowHeight(20);
         jScrollPane1.setViewportView(tablaUsuarios);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -477,7 +474,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         tablaClientes.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tablaClientes.setModel(clientesTableModel);
-        tablaClientes.setRowHeight(20);
         jScrollPane4.setViewportView(tablaClientes);
 
         javax.swing.GroupLayout registroClientesLayout = new javax.swing.GroupLayout(registroClientes);
@@ -522,21 +518,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         panelCliente.add(registroClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, 380));
 
-        jPanel1.setBackground(new java.awt.Color(98, 82, 85));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
-        );
-
-        panelCliente.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 260, 780));
-
         btnUsVolver1.setBackground(new java.awt.Color(204, 204, 204));
         btnUsVolver1.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         btnUsVolver1.setText("Volver");
@@ -552,6 +533,8 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         panelCliente.add(btnUsVolver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 90, 20));
+
+        listadoOpciones.addTab("Cliente", panelCliente);
 
         panelProveedores.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -611,19 +594,6 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(añadirProBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(98, 82, 85));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
         );
 
         registroProveedores.setBackground(new java.awt.Color(255, 255, 255));
@@ -721,31 +691,23 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelProveedoresLayout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(registroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(datosProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(208, 208, 208)))
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(registroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelProveedoresLayout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(datosProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         panelProveedoresLayout.setVerticalGroup(
             panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelProveedoresLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(49, 49, 49)
                 .addComponent(datosProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(37, 37, 37)
                 .addComponent(registroProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        panelCliente.add(panelProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        listadoOpciones.addTab("Cliente", panelCliente);
+        listadoOpciones.addTab("Proveedores", panelProveedores);
 
         panelProductos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -753,7 +715,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelProductos.setLayout(panelProductosLayout);
         panelProductosLayout.setHorizontalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         panelProductosLayout.setVerticalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -994,8 +956,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
