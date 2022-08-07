@@ -63,7 +63,7 @@ public class ClientesService {
     }
     
     public List<ClienteModel> findClienteByIdentificationFilter(String filter) throws SQLException {
-        final String SQL_SELECT = "SELECT * FROM business.clientes WHERE identificacion LIKE '?' and is_deleted is false";
+        final String SQL_SELECT = "SELECT * FROM business.clientes WHERE identificacion LIKE ? and is_deleted is false";
         List<ClienteModel> clientes = new ArrayList<>();
         try (Connection conn = DbConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
@@ -176,7 +176,7 @@ public class ClientesService {
         if(checkClienteExist(cliente.getIdentificacion(), true)){
             return updateCliente(cliente);
         } else {
-            return updateCliente(cliente);
+            return createCliente(cliente);
         }
     }
 
