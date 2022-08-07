@@ -4,19 +4,38 @@
  */
 package co.edu.univalle.businessmanagment.views;
 
+import co.edu.univalle.businessmanagment.models.ClienteModel;
+import co.edu.univalle.businessmanagment.models.UsuarioModel;
+import co.edu.univalle.businessmanagment.views.tablemodels.ClienteTableModel;
+import co.edu.univalle.businessmanagment.views.tablemodels.UsuarioTableModel;
+import java.util.List;
+
 /**
  *
  * @author Alejandra
  */
 public class Dashboard extends javax.swing.JFrame {
+    ClienteTableModel clientesTableModel;
+    UsuarioTableModel usuariosTableModel;
 
     /**
      * Creates new form Dashboard
      */
     public Dashboard() {
+        clientesTableModel = new ClienteTableModel();
+        usuariosTableModel = new UsuarioTableModel();
         initComponents();
     }
-
+    
+    public void setClientesTableData(List<ClienteModel> clientes) {
+        clientesTableModel.setClienteModels(clientes);
+        clientesTableModel.fireTableDataChanged();
+    }
+    
+    public void setUsuariosTableData(List<UsuarioModel> usuarios) {
+        usuariosTableModel.setUsuarioModels(usuarios);
+        usuariosTableModel.fireTableDataChanged();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,17 +54,19 @@ public class Dashboard extends javax.swing.JFrame {
         txt3 = new javax.swing.JLabel();
         txt4 = new javax.swing.JLabel();
         txt6 = new javax.swing.JLabel();
-        TipeID = new javax.swing.JComboBox<>();
-        nombreUsTxt = new javax.swing.JTextField();
-        apellidoUsTxt = new javax.swing.JTextField();
-        identificacionUsTxt = new javax.swing.JTextField();
-        telefonoUsTxt = new javax.swing.JTextField();
+        listTipoIdentificacionUsuario = new javax.swing.JComboBox<>();
+        txtNombreUsuario = new javax.swing.JTextField();
+        txtApellidoUsuario = new javax.swing.JTextField();
+        txtIdentificacionUsuario = new javax.swing.JTextField();
+        txtTelefonoUsuario = new javax.swing.JTextField();
         añadirUsBtn = new javax.swing.JButton();
+        txt10 = new javax.swing.JLabel();
+        txtEmailUsuario = new javax.swing.JTextField();
         registroUsuarios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        idUsTxt = new javax.swing.JTextField();
+        txtFiltroIdentificacionUsuario = new javax.swing.JTextField();
         buscarUsBtn = new javax.swing.JButton();
         editarUsBtn = new javax.swing.JButton();
         borrarUsBtn = new javax.swing.JButton();
@@ -61,29 +82,29 @@ public class Dashboard extends javax.swing.JFrame {
         txt8 = new javax.swing.JLabel();
         txt9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        nombreCliTxt = new javax.swing.JTextField();
-        apellidoCliTxt = new javax.swing.JTextField();
-        identificacionCliTxt = new javax.swing.JTextField();
-        telefonoCliTxt = new javax.swing.JTextField();
-        correoCliTXt = new javax.swing.JTextField();
+        txtNombreCliente = new javax.swing.JTextField();
+        txtApellidoCliente = new javax.swing.JTextField();
+        txtIdentificacionCliente = new javax.swing.JTextField();
+        txtTelefonoCliente = new javax.swing.JTextField();
+        txtEmailCliente = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         añadirCliBtn = new javax.swing.JButton();
         registroClientes = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaClientes = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        idCliTxt = new javax.swing.JTextField();
+        txtFiltroIdentificacionCliente = new javax.swing.JTextField();
         buscarCliBtn = new javax.swing.JButton();
         editarCliBtn = new javax.swing.JButton();
         borrarCliBtn = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaClientes = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         btnUsVolver1 = new javax.swing.JButton();
         panelProveedores = new javax.swing.JPanel();
         datosProveedores = new javax.swing.JPanel();
         nombreProveedor = new javax.swing.JLabel();
         idProveedor = new javax.swing.JLabel();
-        nombreTxt = new javax.swing.JTextField();
-        identificacionTxt = new javax.swing.JTextField();
+        txtNombreProveedor = new javax.swing.JTextField();
+        txtIdentificacionProveedor = new javax.swing.JTextField();
         añadirProBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         registroProveedores = new javax.swing.JPanel();
@@ -91,7 +112,7 @@ public class Dashboard extends javax.swing.JFrame {
         tablaProveedores = new javax.swing.JTable();
         buscarProBtn = new javax.swing.JButton();
         identificacion = new javax.swing.JLabel();
-        identificacionProTxt = new javax.swing.JTextField();
+        txtFiltroIdentificacionProveedor = new javax.swing.JTextField();
         editarProBtn = new javax.swing.JButton();
         borrarProBtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -105,43 +126,29 @@ public class Dashboard extends javax.swing.JFrame {
         panelUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        datosUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos Usuario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        datosUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos Usuario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18))); // NOI18N
 
         txt1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt1.setForeground(new java.awt.Color(0, 0, 0));
         txt1.setText("Nombre:");
 
         txt2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt2.setForeground(new java.awt.Color(0, 0, 0));
         txt2.setText("Apellido:");
 
         txt3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt3.setForeground(new java.awt.Color(0, 0, 0));
         txt3.setText("Tipo ID:");
         txt3.setToolTipText("");
 
         txt4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt4.setForeground(new java.awt.Color(0, 0, 0));
         txt4.setText("Número ID:");
         txt4.setToolTipText("");
 
         txt6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt6.setForeground(new java.awt.Color(0, 0, 0));
         txt6.setText("Teléfono:");
 
-        TipeID.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E", "NIT", "PEP" }));
-
-        nombreUsTxt.setText("jTextField1");
-
-        apellidoUsTxt.setText("jTextField1");
-
-        identificacionUsTxt.setText("jTextField1");
-
-        telefonoUsTxt.setText("jTextField1");
+        listTipoIdentificacionUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E", "NIT", "PEP" }));
 
         añadirUsBtn.setBackground(new java.awt.Color(255, 255, 255));
         añadirUsBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        añadirUsBtn.setForeground(new java.awt.Color(0, 0, 0));
         añadirUsBtn.setText("Añadir");
         añadirUsBtn.setToolTipText("");
         añadirUsBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -151,6 +158,9 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        txt10.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txt10.setText("Teléfono:");
+
         javax.swing.GroupLayout datosUsuariosLayout = new javax.swing.GroupLayout(datosUsuarios);
         datosUsuarios.setLayout(datosUsuariosLayout);
         datosUsuariosLayout.setHorizontalGroup(
@@ -159,26 +169,29 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(txt1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(txtNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(datosUsuariosLayout.createSequentialGroup()
+                        .addComponent(txt2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApellidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt3)
+                        .addGap(18, 18, 18)
+                        .addComponent(listTipoIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt4))
                     .addGroup(datosUsuariosLayout.createSequentialGroup()
                         .addComponent(txt6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(telefonoUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
-                    .addGroup(datosUsuariosLayout.createSequentialGroup()
-                        .addComponent(nombreUsTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                        .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txt10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(apellidoUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt3)))
+                        .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TipeID, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(identificacionUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosUsuariosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,18 +204,20 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt1)
-                    .addComponent(nombreUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt2)
-                    .addComponent(apellidoUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtApellidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt3)
-                    .addComponent(TipeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listTipoIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt4)
-                    .addComponent(identificacionUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(telefonoUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                    .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt6)
+                    .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt10))
+                .addGap(28, 28, 28)
                 .addComponent(añadirUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -210,36 +225,24 @@ public class Dashboard extends javax.swing.JFrame {
         panelUsuario.add(datosUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 56, 690, -1));
 
         registroUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        registroUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Registro de Usuarios", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        registroUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Registro de Usuarios", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18))); // NOI18N
 
         tablaUsuarios.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Apellido", "Tipo ID", "Número ID", "Teléfono"
-            }
-        ));
+        tablaUsuarios.setModel(usuariosTableModel);
+        tablaUsuarios.setRowHeight(20);
         jScrollPane1.setViewportView(tablaUsuarios);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Identificación:");
 
-        idUsTxt.setText("jTextField1");
-        idUsTxt.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltroIdentificacionUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idUsTxtActionPerformed(evt);
+                txtFiltroIdentificacionUsuarioActionPerformed(evt);
             }
         });
 
         buscarUsBtn.setBackground(new java.awt.Color(255, 255, 255));
         buscarUsBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        buscarUsBtn.setForeground(new java.awt.Color(0, 0, 0));
         buscarUsBtn.setText("Buscar");
         buscarUsBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buscarUsBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +253,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         editarUsBtn.setBackground(new java.awt.Color(255, 255, 255));
         editarUsBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        editarUsBtn.setForeground(new java.awt.Color(0, 0, 0));
         editarUsBtn.setText("Editar");
         editarUsBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         editarUsBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -261,7 +263,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         borrarUsBtn.setBackground(new java.awt.Color(255, 255, 255));
         borrarUsBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        borrarUsBtn.setForeground(new java.awt.Color(0, 0, 0));
         borrarUsBtn.setText("Borrar");
         borrarUsBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -276,7 +277,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFiltroIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buscarUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(93, 93, 93))
@@ -297,7 +298,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(registroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buscarUsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(idUsTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFiltroIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -381,7 +382,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnUsVolver.setBackground(new java.awt.Color(204, 204, 204));
         btnUsVolver.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnUsVolver.setForeground(new java.awt.Color(0, 0, 0));
         btnUsVolver.setText("Volver");
         btnUsVolver.setBorder(null);
         btnUsVolver.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -402,44 +402,28 @@ public class Dashboard extends javax.swing.JFrame {
         panelCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosClientes.setBackground(new java.awt.Color(255, 255, 255));
-        datosClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        datosClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18))); // NOI18N
 
         txt5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt5.setForeground(new java.awt.Color(0, 0, 0));
         txt5.setText("Nombre:");
 
         txt7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt7.setForeground(new java.awt.Color(0, 0, 0));
         txt7.setText("Apellido:");
 
         txt8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt8.setForeground(new java.awt.Color(0, 0, 0));
         txt8.setText("Identificación");
         txt8.setToolTipText("");
 
         txt9.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt9.setForeground(new java.awt.Color(0, 0, 0));
         txt9.setText("Teléfono:");
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("E-mail:");
-
-        nombreCliTxt.setText("jTextField1");
-
-        apellidoCliTxt.setText("jTextField1");
-
-        identificacionCliTxt.setText("jTextField1");
-
-        telefonoCliTxt.setText("jTextField1");
-
-        correoCliTXt.setText("jTextField2");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         añadirCliBtn.setBackground(new java.awt.Color(255, 255, 255));
         añadirCliBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        añadirCliBtn.setForeground(new java.awt.Color(0, 0, 0));
         añadirCliBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
         añadirCliBtn.setText("Añadir");
         añadirCliBtn.setToolTipText("");
@@ -455,16 +439,16 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosClientesLayout.createSequentialGroup()
                         .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nombreCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt5)
                             .addComponent(txt7)
-                            .addComponent(apellidoCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txt8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79))
                     .addGroup(datosClientesLayout.createSequentialGroup()
-                        .addComponent(identificacionCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosClientesLayout.createSequentialGroup()
@@ -473,13 +457,13 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosClientesLayout.createSequentialGroup()
                             .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(correoCliTXt, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel4))
                             .addGap(118, 118, 118))
                         .addGroup(datosClientesLayout.createSequentialGroup()
                             .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txt9)
-                                .addComponent(telefonoCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addContainerGap()))))
         );
         datosClientesLayout.setVerticalGroup(
@@ -492,25 +476,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosClientesLayout.createSequentialGroup()
-                        .addComponent(nombreCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txt7))
                     .addGroup(datosClientesLayout.createSequentialGroup()
-                        .addComponent(correoCliTXt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txt9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosClientesLayout.createSequentialGroup()
-                        .addComponent(apellidoCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txt8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(añadirCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(identificacionCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(telefonoCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(7, Short.MAX_VALUE))
+                            .addComponent(txtIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(datosClientesLayout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -519,35 +503,19 @@ public class Dashboard extends javax.swing.JFrame {
         panelCliente.add(datosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
         registroClientes.setBackground(new java.awt.Color(255, 255, 255));
-        registroClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Registro de Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
-
-        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Nombre", "Apellido", "Identificación", "E-mail", "Teléfono"
-            }
-        ));
-        jScrollPane2.setViewportView(tablaClientes);
+        registroClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Registro de Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Identificación: ");
 
-        idCliTxt.setText("jTextField1");
-        idCliTxt.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltroIdentificacionCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idCliTxtActionPerformed(evt);
+                txtFiltroIdentificacionClienteActionPerformed(evt);
             }
         });
 
         buscarCliBtn.setBackground(new java.awt.Color(255, 255, 255));
         buscarCliBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        buscarCliBtn.setForeground(new java.awt.Color(0, 0, 0));
         buscarCliBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         buscarCliBtn.setText("Buscar");
         buscarCliBtn.setBorder(null);
@@ -560,7 +528,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         editarCliBtn.setBackground(new java.awt.Color(255, 255, 255));
         editarCliBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        editarCliBtn.setForeground(new java.awt.Color(0, 0, 0));
         editarCliBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         editarCliBtn.setText("Editar");
         editarCliBtn.setBorder(null);
@@ -573,11 +540,15 @@ public class Dashboard extends javax.swing.JFrame {
 
         borrarCliBtn.setBackground(new java.awt.Color(255, 255, 255));
         borrarCliBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        borrarCliBtn.setForeground(new java.awt.Color(0, 0, 0));
         borrarCliBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         borrarCliBtn.setText("Borrar");
         borrarCliBtn.setBorder(null);
         borrarCliBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        tablaClientes.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        tablaClientes.setModel(clientesTableModel);
+        tablaClientes.setRowHeight(20);
+        jScrollPane4.setViewportView(tablaClientes);
 
         javax.swing.GroupLayout registroClientesLayout = new javax.swing.GroupLayout(registroClientes);
         registroClientes.setLayout(registroClientesLayout);
@@ -587,7 +558,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(67, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(idCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buscarCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(133, 133, 133))
@@ -597,7 +568,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(borrarCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
+            .addGroup(registroClientesLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         registroClientesLayout.setVerticalGroup(
             registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,11 +579,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(idCliTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(borrarCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editarCliBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -635,7 +609,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnUsVolver1.setBackground(new java.awt.Color(204, 204, 204));
         btnUsVolver1.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnUsVolver1.setForeground(new java.awt.Color(0, 0, 0));
         btnUsVolver1.setText("Volver");
         btnUsVolver1.setBorder(null);
         btnUsVolver1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -655,29 +628,23 @@ public class Dashboard extends javax.swing.JFrame {
         panelProveedores.setBackground(new java.awt.Color(255, 255, 255));
 
         datosProveedores.setBackground(new java.awt.Color(255, 255, 255));
-        datosProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        datosProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Datos Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18))); // NOI18N
 
         nombreProveedor.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        nombreProveedor.setForeground(new java.awt.Color(0, 0, 0));
         nombreProveedor.setText("Nombre:");
 
         idProveedor.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        idProveedor.setForeground(new java.awt.Color(0, 0, 0));
         idProveedor.setText("Identificación:");
         idProveedor.setToolTipText("");
 
-        nombreTxt.setText("jTextField1");
-
-        identificacionTxt.setText("jTextField1");
-        identificacionTxt.addActionListener(new java.awt.event.ActionListener() {
+        txtIdentificacionProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                identificacionTxtActionPerformed(evt);
+                txtIdentificacionProveedorActionPerformed(evt);
             }
         });
 
         añadirProBtn.setBackground(new java.awt.Color(255, 255, 255));
         añadirProBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        añadirProBtn.setForeground(new java.awt.Color(0, 0, 0));
         añadirProBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         añadirProBtn.setText("Añadir");
         añadirProBtn.setToolTipText("");
@@ -698,8 +665,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(nombreProveedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(identificacionTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         datosProveedoresLayout.setVerticalGroup(
@@ -707,11 +674,11 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(datosProveedoresLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreProveedor))
                 .addGap(18, 18, 18)
                 .addGroup(datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(identificacionTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idProveedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(añadirProBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -732,7 +699,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
 
         registroProveedores.setBackground(new java.awt.Color(255, 255, 255));
-        registroProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Registro de Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(0, 0, 0))); // NOI18N
+        registroProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Registro de Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18))); // NOI18N
 
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -749,7 +716,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         buscarProBtn.setBackground(new java.awt.Color(255, 255, 255));
         buscarProBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        buscarProBtn.setForeground(new java.awt.Color(0, 0, 0));
         buscarProBtn.setText("Buscar");
         buscarProBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buscarProBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -759,19 +725,16 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         identificacion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        identificacion.setForeground(new java.awt.Color(0, 0, 0));
         identificacion.setText("Identificación:");
 
-        identificacionProTxt.setText("jTextField1");
-        identificacionProTxt.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltroIdentificacionProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                identificacionProTxtActionPerformed(evt);
+                txtFiltroIdentificacionProveedorActionPerformed(evt);
             }
         });
 
         editarProBtn.setBackground(new java.awt.Color(255, 255, 255));
         editarProBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        editarProBtn.setForeground(new java.awt.Color(0, 0, 0));
         editarProBtn.setText("Editar");
         editarProBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         editarProBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -782,7 +745,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         borrarProBtn.setBackground(new java.awt.Color(255, 255, 255));
         borrarProBtn.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        borrarProBtn.setForeground(new java.awt.Color(0, 0, 0));
         borrarProBtn.setText("Borrar");
         borrarProBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -794,7 +756,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(77, Short.MAX_VALUE)
                 .addComponent(identificacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(identificacionProTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFiltroIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buscarProBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82))
@@ -812,7 +774,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(registroProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(identificacion)
-                    .addComponent(identificacionProTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFiltroIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarProBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -894,9 +856,9 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarUsBtnActionPerformed
 
-    private void idUsTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idUsTxtActionPerformed
+    private void txtFiltroIdentificacionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroIdentificacionUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idUsTxtActionPerformed
+    }//GEN-LAST:event_txtFiltroIdentificacionUsuarioActionPerformed
 
     private void editarUsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarUsBtnActionPerformed
         // TODO add your handling code here:
@@ -906,25 +868,25 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarCliBtnActionPerformed
 
-    private void idCliTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idCliTxtActionPerformed
+    private void txtFiltroIdentificacionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroIdentificacionClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idCliTxtActionPerformed
+    }//GEN-LAST:event_txtFiltroIdentificacionClienteActionPerformed
 
     private void editarCliBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarCliBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editarCliBtnActionPerformed
 
-    private void identificacionTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_identificacionTxtActionPerformed
+    private void txtIdentificacionProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionProveedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_identificacionTxtActionPerformed
+    }//GEN-LAST:event_txtIdentificacionProveedorActionPerformed
 
     private void buscarProBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarProBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarProBtnActionPerformed
 
-    private void identificacionProTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_identificacionProTxtActionPerformed
+    private void txtFiltroIdentificacionProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroIdentificacionProveedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_identificacionProTxtActionPerformed
+    }//GEN-LAST:event_txtFiltroIdentificacionProveedorActionPerformed
 
     private void editarProBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarProBtnActionPerformed
         // TODO add your handling code here:
@@ -973,42 +935,39 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Dashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Dashboard().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> TipeID;
-    private javax.swing.JTextField apellidoCliTxt;
-    private javax.swing.JTextField apellidoUsTxt;
     private javax.swing.JButton añadirCliBtn;
     private javax.swing.JButton añadirProBtn;
     private javax.swing.JButton añadirUsBtn;
@@ -1024,21 +983,14 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton buscarCliBtn;
     private javax.swing.JButton buscarProBtn;
     private javax.swing.JButton buscarUsBtn;
-    private javax.swing.JTextField correoCliTXt;
     private javax.swing.JPanel datosClientes;
     private javax.swing.JPanel datosProveedores;
     private javax.swing.JPanel datosUsuarios;
     private javax.swing.JButton editarCliBtn;
     private javax.swing.JButton editarProBtn;
     private javax.swing.JButton editarUsBtn;
-    private javax.swing.JTextField idCliTxt;
     private javax.swing.JLabel idProveedor;
-    private javax.swing.JTextField idUsTxt;
     private javax.swing.JLabel identificacion;
-    private javax.swing.JTextField identificacionCliTxt;
-    private javax.swing.JTextField identificacionProTxt;
-    private javax.swing.JTextField identificacionTxt;
-    private javax.swing.JTextField identificacionUsTxt;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1047,14 +999,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JComboBox<String> listTipoIdentificacionUsuario;
     private javax.swing.JTabbedPane listadoOpciones;
-    private javax.swing.JTextField nombreCliTxt;
     private javax.swing.JLabel nombreProveedor;
-    private javax.swing.JTextField nombreTxt;
-    private javax.swing.JTextField nombreUsTxt;
     private javax.swing.JPanel panelCliente;
     private javax.swing.JPanel panelProveedores;
     private javax.swing.JPanel panelUsuario;
@@ -1064,9 +1014,8 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tablaProveedores;
     private javax.swing.JTable tablaUsuarios;
-    private javax.swing.JTextField telefonoCliTxt;
-    private javax.swing.JTextField telefonoUsTxt;
     private javax.swing.JLabel txt1;
+    private javax.swing.JLabel txt10;
     private javax.swing.JLabel txt2;
     private javax.swing.JLabel txt3;
     private javax.swing.JLabel txt4;
@@ -1075,5 +1024,20 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel txt7;
     private javax.swing.JLabel txt8;
     private javax.swing.JLabel txt9;
+    private javax.swing.JTextField txtApellidoCliente;
+    private javax.swing.JTextField txtApellidoUsuario;
+    private javax.swing.JTextField txtEmailCliente;
+    private javax.swing.JTextField txtEmailUsuario;
+    private javax.swing.JTextField txtFiltroIdentificacionCliente;
+    private javax.swing.JTextField txtFiltroIdentificacionProveedor;
+    private javax.swing.JTextField txtFiltroIdentificacionUsuario;
+    private javax.swing.JTextField txtIdentificacionCliente;
+    private javax.swing.JTextField txtIdentificacionProveedor;
+    private javax.swing.JTextField txtIdentificacionUsuario;
+    private javax.swing.JTextField txtNombreCliente;
+    private javax.swing.JTextField txtNombreProveedor;
+    private javax.swing.JTextField txtNombreUsuario;
+    private javax.swing.JTextField txtTelefonoCliente;
+    private javax.swing.JTextField txtTelefonoUsuario;
     // End of variables declaration//GEN-END:variables
 }
