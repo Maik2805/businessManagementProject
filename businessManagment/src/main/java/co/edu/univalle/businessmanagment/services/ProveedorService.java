@@ -25,7 +25,7 @@ public class ProveedorService {
     
     public ProveedorModel findProveedorByIdentificacion (String id) throws SQLException {
         
-        final String SQL_SELECT = "SELECT * FROM business.proveedores where identificaicon =? and is_deleted is false";
+        final String SQL_SELECT = "SELECT * FROM business.proveedores where identificacion =? and is_deleted is false";
         
         try (Connection conn = DbConnection.getConnection(); 
             PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
@@ -41,6 +41,24 @@ public class ProveedorService {
             } catch (SQLException e) {
                 throw e;
             }
+    }
+    
+    public List<ProveedorModel> findProveedorByIdentificacionFilter  (String id) throws SQLException {
+        
+        final String SQL_SELECT = "SELECT * FROM business.proveedores WHERE identificacion LIKE '?' and is_deleted is false";
+        
+        List <ProveedorModel> proveedores = new ArrayList<>();
+        try (Connection conn = DbConnection.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
+            preparedStatement.setString(1, "%" + id + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                proveedores.add (resultsetToModel(resultSet));
+            }
+            return proveedores;
+        } catch (SQLException e) {
+            throw e;
+        }
     }
     
     public List<ProveedorModel> getAllProveedores() throws SQLException {
