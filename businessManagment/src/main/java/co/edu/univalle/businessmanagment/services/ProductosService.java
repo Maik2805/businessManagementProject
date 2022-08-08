@@ -174,7 +174,7 @@ public class ProductosService {
         if(checkProductoExist(producto.getIdProducto(), true)){
             return updateProducto(producto);
         } else {
-            return updateProducto(producto);
+            return createProducto(producto);
         }
     }
 
