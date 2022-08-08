@@ -5,8 +5,10 @@
 package co.edu.univalle.businessmanagment.views;
 
 import co.edu.univalle.businessmanagment.models.ClienteModel;
+import co.edu.univalle.businessmanagment.models.ProductoModel;
 import co.edu.univalle.businessmanagment.models.UsuarioModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.ClienteTableModel;
+import co.edu.univalle.businessmanagment.views.tablemodels.ProductoTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.UsuarioTableModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,9 +22,11 @@ import org.apache.logging.log4j.Logger;
  * @author Alejandra
  */
 public class Dashboard extends javax.swing.JFrame {
+
     private static final Logger logger = LogManager.getLogger(Dashboard.class);
     ClienteTableModel clientesTableModel;
     UsuarioTableModel usuariosTableModel;
+    ProductoTableModel productosTableModel;
 
     /**
      * Creates new form Dashboard
@@ -30,21 +34,27 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard() {
         clientesTableModel = new ClienteTableModel();
         usuariosTableModel = new UsuarioTableModel();
+        productosTableModel = new ProductoTableModel();
         initComponents();
     }
-    
+
     public void setClientesTableData(List<ClienteModel> clientes) {
         clientesTableModel.setClienteModels(clientes);
         clientesTableModel.fireTableDataChanged();
     }
-    
+
     public void setUsuariosTableData(List<UsuarioModel> usuarios) {
         usuariosTableModel.setUsuarioModels(usuarios);
         usuariosTableModel.fireTableDataChanged();
     }
     
+    public void setProductosTableData(List<ProductoModel> productos){
+        productosTableModel.setProductoModels(productos);
+        productosTableModel.fireTableDataChanged();
+    }
+
     /* =========== USUARIOS IMPL ===========  */
-    public UsuarioModel getUsuarioFromDatosUsuario(){
+    public UsuarioModel getUsuarioFromDatosUsuario() {
         UsuarioModel usuario = new UsuarioModel();
         usuario.setEmail(txtEmailUsuario.getText());
         usuario.setNombre(txtNombreUsuario.getText());
@@ -54,42 +64,42 @@ public class Dashboard extends javax.swing.JFrame {
         usuario.setTelefono(txtTelefonoUsuario.getText());
         return usuario;
     }
-    
-    public void setDatosUsuarioFromUsuario(UsuarioModel usuario){
+
+    public void setDatosUsuarioFromUsuario(UsuarioModel usuario) {
         txtEmailUsuario.setText(usuario.getEmail());
         txtNombreUsuario.setText(usuario.getNombre());
         txtApellidoUsuario.setText(usuario.getApellido());
         txtIdentificacionUsuario.setText(usuario.getIdentificacion());
         txtTelefonoUsuario.setText(usuario.getTelefono());
     }
-    
-    public void addActionListenerBtnAddUsuario(ActionListener listener){
+
+    public void addActionListenerBtnAddUsuario(ActionListener listener) {
         btnAddUsuario.addActionListener(listener);
     }
-    
-    public void addActionListenerBtnBuscarUsuario(ActionListener listener){
+
+    public void addActionListenerBtnBuscarUsuario(ActionListener listener) {
         btnBuscarUsuario.addActionListener(listener);
     }
-    
-    public void addActionListenerBtnEditarUsuario(ActionListener listener){
+
+    public void addActionListenerBtnEditarUsuario(ActionListener listener) {
         btnEditarUsuario.addActionListener(listener);
     }
-    
-    public void addActionListenerBtnBorrarUsuario(ActionListener listener){
+
+    public void addActionListenerBtnBorrarUsuario(ActionListener listener) {
         btnBorrarUsuario.addActionListener(listener);
     }
-    
-    public UsuarioModel getUsuarioSelectedOnUsuariosTable(){
+
+    public UsuarioModel getUsuarioSelectedOnUsuariosTable() {
         int index = tablaUsuarios.getSelectedRow();
         if (index != -1) {
             return usuariosTableModel.getUsuarioModelAt(index);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "ERROR : Ningún usuario Seleccionado");
             return null;
         }
     }
-    
-    public List<UsuarioModel> getUsuariosSelectedOnUsuariosTable(){
+
+    public List<UsuarioModel> getUsuariosSelectedOnUsuariosTable() {
         int[] index = tablaUsuarios.getSelectedRows();
         ArrayList<UsuarioModel> usuariosSelected = new ArrayList();
         for (int i : index) {
@@ -97,13 +107,13 @@ public class Dashboard extends javax.swing.JFrame {
         }
         return usuariosSelected;
     }
-    
-    public String getUsuariosFilterIdentificacion(){
+
+    public String getUsuariosFilterIdentificacion() {
         return txtFiltroIdentificacionUsuario.getText();
     }
-    
+
     /* =========== CLIENTES IMPL ===========  */
-    public ClienteModel getClienteFromDatosCliente(){
+    public ClienteModel getClienteFromDatosCliente() {
         ClienteModel cliente = new ClienteModel();
         cliente.setEmail(txtEmailCliente.getText());
         cliente.setNombre(txtNombreCliente.getText());
@@ -112,46 +122,46 @@ public class Dashboard extends javax.swing.JFrame {
         cliente.setTelefono(txtTelefonoCliente.getText());
         return cliente;
     }
-    
-    public void setDatosClienteFromCliente(ClienteModel cliente){
+
+    public void setDatosClienteFromCliente(ClienteModel cliente) {
         txtEmailCliente.setText(cliente.getEmail());
         txtNombreCliente.setText(cliente.getNombre());
         txtApellidoCliente.setText(cliente.getApellido());
         txtIdentificacionCliente.setText(cliente.getIdentificacion());
         txtTelefonoCliente.setText(cliente.getTelefono());
     }
-    
-    public void addActionListenerBtnAddCliente(ActionListener listener){
+
+    public void addActionListenerBtnAddCliente(ActionListener listener) {
         btnAddCliente.addActionListener(listener);
     }
-    
-    public void addActionListenerBtnBuscarCliente(ActionListener listener){
+
+    public void addActionListenerBtnBuscarCliente(ActionListener listener) {
         btnBuscarCliente.addActionListener(listener);
     }
-    
-    public void addActionListenerBtnEditarCliente(ActionListener listener){
+
+    public void addActionListenerBtnEditarCliente(ActionListener listener) {
         btnEditarCliente.addActionListener(listener);
     }
-    
-    public void addActionListenerBtnBorrarCliente(ActionListener listener){
+
+    public void addActionListenerBtnBorrarCliente(ActionListener listener) {
         btnBorrarCliente.addActionListener(listener);
     }
-    
-    public String getClienteFiltroIdentificacion(){
+
+    public String getClienteFiltroIdentificacion() {
         return txtFiltroIdentificacionCliente.getText();
     }
-    
-        public ClienteModel getClienteSelectedOnClientesTable(){
+
+    public ClienteModel getClienteSelectedOnClientesTable() {
         int index = tablaClientes.getSelectedRow();
         if (index != -1) {
             return clientesTableModel.getClienteModelAt(index);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "ERROR : Ningún Cliente Seleccionado");
             return null;
         }
     }
-    
-    public List<ClienteModel> getClientesSelectedOnClientesTable(){
+
+    public List<ClienteModel> getClientesSelectedOnClientesTable() {
         int[] index = tablaClientes.getSelectedRows();
         ArrayList<ClienteModel> clientesSelected = new ArrayList();
         for (int i : index) {
@@ -159,7 +169,56 @@ public class Dashboard extends javax.swing.JFrame {
         }
         return clientesSelected;
     }
+
+    /* =========== PRODUCTOS IMPL ===========  */
+    public ProductoModel getProductoFromDatosProducto() throws Exception {
+        ProductoModel producto = new ProductoModel();
+        producto.setIdProducto(txtIdProducto.getText());
+        producto.setNombre(txtNombreProducto.getText());
+        producto.setPrecioVentaBase(obtenerPrecioBaseProducto());
+        producto.setEstado((String) listEstadoProducto.getSelectedItem());
+        return producto;
+    }
     
+    public void setDatosProductoFromProducto(ProductoModel producto) throws Exception {
+        txtIdProducto.setText(producto.getIdProducto());
+        txtNombreProducto.setText(producto.getNombre());
+        txtPrecioProducto.setText(String.valueOf(producto.getPrecioVentaBase()));
+        listEstadoProducto.setSelectedItem(producto.getEstado());
+    }
+    
+    public void addActionListenerBtnAddProducto(ActionListener listener){
+        btnAddProducto.addActionListener(listener);
+    }
+
+    public double obtenerPrecioBaseProducto() throws Exception {
+        String valueString = txtPrecioProducto.getText();
+        try {
+            return Double.valueOf(valueString);
+        } catch (Exception e) {
+            logger.info("El campo Precio Venta debe ser numerico.");
+            throw new Exception("El campo Precio Venta debe ser numerico.");
+        }
+    }
+
+    public ProductoModel getProductoSelectedOnProductosTable() {
+        int index = tablaProductos.getSelectedRow();
+        if (index != -1) {
+            return productosTableModel.getProductoModelAt(index);
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR : Ningún Producto Seleccionado");
+            return null;
+        }
+    }
+
+    public List<ProductoModel> getProductosSelectedOnProductosTable() {
+        int[] index = tablaProductos.getSelectedRows();
+        ArrayList<ProductoModel> productosSelected = new ArrayList();
+        for (int i : index) {
+            productosSelected.add(productosTableModel.getProductoModelAt(i));
+        }
+        return productosSelected;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -240,9 +299,9 @@ public class Dashboard extends javax.swing.JFrame {
         datosProductos = new javax.swing.JPanel();
         nombreProveedor1 = new javax.swing.JLabel();
         idProveedor1 = new javax.swing.JLabel();
+        txtIdProducto = new javax.swing.JTextField();
         txtNombreProducto = new javax.swing.JTextField();
-        txtIdentificacionProducto1 = new javax.swing.JTextField();
-        txtPrecioVenta = new javax.swing.JTextField();
+        txtPrecioProducto = new javax.swing.JTextField();
         btnAddProducto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -303,7 +362,6 @@ public class Dashboard extends javax.swing.JFrame {
         panelInicio.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("¡Bienvenido al programa!");
 
         javax.swing.GroupLayout panelInicioLayout = new javax.swing.GroupLayout(panelInicio);
@@ -330,36 +388,29 @@ public class Dashboard extends javax.swing.JFrame {
 
         datosUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         datosUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Usuario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
-        datosUsuarios.setForeground(new java.awt.Color(0, 0, 0));
 
         txt1.setBackground(new java.awt.Color(255, 255, 255));
         txt1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt1.setForeground(new java.awt.Color(0, 0, 0));
         txt1.setText("Nombre:");
 
         txt2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt2.setForeground(new java.awt.Color(0, 0, 0));
         txt2.setText("Apellido:");
 
         txt3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt3.setForeground(new java.awt.Color(0, 0, 0));
         txt3.setText("Tipo ID:");
         txt3.setToolTipText("");
 
         txt4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt4.setForeground(new java.awt.Color(0, 0, 0));
         txt4.setText("Número ID:");
         txt4.setToolTipText("");
 
         txt6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt6.setForeground(new java.awt.Color(0, 0, 0));
         txt6.setText("Teléfono:");
 
         listTipoIdentificacionUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E", "NIT", "PEP" }));
 
         btnAddUsuario.setBackground(new java.awt.Color(255, 255, 255));
         btnAddUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddUsuario.setForeground(new java.awt.Color(0, 0, 0));
         btnAddUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
         btnAddUsuario.setText("Añadir");
         btnAddUsuario.setToolTipText("");
@@ -372,7 +423,6 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         txt10.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt10.setForeground(new java.awt.Color(0, 0, 0));
         txt10.setText("Email:");
 
         javax.swing.GroupLayout datosUsuariosLayout = new javax.swing.GroupLayout(datosUsuarios);
@@ -451,7 +501,6 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaUsuarios);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Identificación:");
 
         txtFiltroIdentificacionUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -462,7 +511,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBuscarUsuario.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBuscarUsuario.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarUsuario.setText("Buscar");
         btnBuscarUsuario.setBorder(null);
@@ -475,7 +523,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnEditarUsuario.setBackground(new java.awt.Color(255, 255, 255));
         btnEditarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnEditarUsuario.setForeground(new java.awt.Color(0, 0, 0));
         btnEditarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarUsuario.setText("Editar");
         btnEditarUsuario.setBorder(null);
@@ -488,7 +535,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBorrarUsuario.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBorrarUsuario.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnBorrarUsuario.setText("Borrar");
         btnBorrarUsuario.setBorder(null);
@@ -565,31 +611,25 @@ public class Dashboard extends javax.swing.JFrame {
         datosClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         txt5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt5.setForeground(new java.awt.Color(0, 0, 0));
         txt5.setText("Nombre:");
 
         txt7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt7.setForeground(new java.awt.Color(0, 0, 0));
         txt7.setText("Apellido:");
 
         txt8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt8.setForeground(new java.awt.Color(0, 0, 0));
         txt8.setText("Identificación:");
         txt8.setToolTipText("");
 
         txt9.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txt9.setForeground(new java.awt.Color(0, 0, 0));
         txt9.setText("Teléfono:");
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("E-mail:");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnAddCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnAddCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
         btnAddCliente.setText("Añadir");
         btnAddCliente.setToolTipText("");
@@ -667,7 +707,6 @@ public class Dashboard extends javax.swing.JFrame {
         registroClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Identificación: ");
 
         txtFiltroIdentificacionCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -678,7 +717,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBuscarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.setBorder(null);
@@ -691,7 +729,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnEditarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnEditarCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnEditarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarCliente.setText("Editar");
         btnEditarCliente.setBorder(null);
@@ -704,7 +741,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBorrarCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrarCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBorrarCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         btnBorrarCliente.setText("Borrar");
         btnBorrarCliente.setBorder(null);
@@ -783,11 +819,9 @@ public class Dashboard extends javax.swing.JFrame {
         datosProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         nombreProveedor.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        nombreProveedor.setForeground(new java.awt.Color(0, 0, 0));
         nombreProveedor.setText("Nombre:");
 
         idProveedor.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        idProveedor.setForeground(new java.awt.Color(0, 0, 0));
         idProveedor.setText("Identificación:");
         idProveedor.setToolTipText("");
 
@@ -799,7 +833,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnAddProveedor.setBackground(new java.awt.Color(255, 255, 255));
         btnAddProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddProveedor.setForeground(new java.awt.Color(0, 0, 0));
         btnAddProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnAddProveedor.setText("Añadir");
         btnAddProveedor.setToolTipText("");
@@ -860,7 +893,6 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane3.setViewportView(tablaProveedores);
 
         identificacion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        identificacion.setForeground(new java.awt.Color(0, 0, 0));
         identificacion.setText("Identificación:");
 
         txtFiltroIdentificacionProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -871,7 +903,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBuscarProveedor.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBuscarProveedor.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
         btnBuscarProveedor.setText("Buscar");
         btnBuscarProveedor.setBorder(null);
@@ -884,7 +915,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnEditarProveedor.setBackground(new java.awt.Color(255, 255, 255));
         btnEditarProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnEditarProveedor.setForeground(new java.awt.Color(0, 0, 0));
         btnEditarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarProveedor.setText("Editar");
         btnEditarProveedor.setBorder(null);
@@ -897,7 +927,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBorrarProveedor.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrarProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBorrarProveedor.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         btnBorrarProveedor.setText("Borrar");
         btnBorrarProveedor.setBorder(null);
@@ -969,13 +998,17 @@ public class Dashboard extends javax.swing.JFrame {
         datosProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Producto\n\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         nombreProveedor1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        nombreProveedor1.setForeground(new java.awt.Color(0, 0, 0));
         nombreProveedor1.setText("Nombre:");
 
         idProveedor1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        idProveedor1.setForeground(new java.awt.Color(0, 0, 0));
         idProveedor1.setText("ID Producto:");
         idProveedor1.setToolTipText("");
+
+        txtIdProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdProductoActionPerformed(evt);
+            }
+        });
 
         txtNombreProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -983,21 +1016,15 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        txtIdentificacionProducto1.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecioProducto.setText("0");
+        txtPrecioProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdentificacionProducto1ActionPerformed(evt);
-            }
-        });
-
-        txtPrecioVenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioVentaActionPerformed(evt);
+                txtPrecioProductoActionPerformed(evt);
             }
         });
 
         btnAddProducto.setBackground(new java.awt.Color(255, 255, 255));
         btnAddProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnAddProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnAddProducto.setText("Añadir");
         btnAddProducto.setToolTipText("");
@@ -1005,14 +1032,12 @@ public class Dashboard extends javax.swing.JFrame {
         btnAddProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Precio Venta:");
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Estado Producto:");
 
-        listEstadoProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listEstadoProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo", "Agotado" }));
 
         javax.swing.GroupLayout datosProductosLayout = new javax.swing.GroupLayout(datosProductos);
         datosProductos.setLayout(datosProductosLayout);
@@ -1029,9 +1054,9 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(nombreProveedor1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPrecioVenta)
-                            .addComponent(txtNombreProducto)
-                            .addComponent(txtIdentificacionProducto1, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(txtPrecioProducto)
+                            .addComponent(txtIdProducto)
+                            .addComponent(txtNombreProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                             .addComponent(listEstadoProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(datosProductosLayout.createSequentialGroup()
                         .addGap(117, 117, 117)
@@ -1044,15 +1069,15 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(datosProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idProveedor1)
-                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(datosProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombreProveedor1)
-                    .addComponent(txtIdentificacionProducto1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(datosProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtPrecioVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(datosProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -1068,21 +1093,11 @@ public class Dashboard extends javax.swing.JFrame {
         registroProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Productos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         tablaProductos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID Producto", "Nombre", "Precio Venta", "Estado"
-            }
-        ));
+        tablaProductos.setModel(productosTableModel);
+        tablaProductos.setRowHeight(20);
         jScrollPane5.setViewportView(tablaProductos);
 
         idProducto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        idProducto.setForeground(new java.awt.Color(0, 0, 0));
         idProducto.setText("ID Producto: ");
 
         txtFiltroProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -1093,7 +1108,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBuscarProducto.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBuscarProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setBorder(null);
@@ -1106,7 +1120,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnEditarProducto.setBackground(new java.awt.Color(255, 255, 255));
         btnEditarProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnEditarProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarProducto.setText("Editar");
         btnEditarProducto.setBorder(null);
@@ -1119,7 +1132,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBorrarProducto.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrarProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBorrarProducto.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         btnBorrarProducto.setText("Borrar");
         btnBorrarProducto.setBorder(null);
@@ -1194,23 +1206,19 @@ public class Dashboard extends javax.swing.JFrame {
         datosVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Venta", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("ID Venta: ");
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("ID Usuario: ");
 
         listIdUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("ID Cliente: ");
 
         listIdCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Subtotal:");
 
         txtSubTotalVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -1220,7 +1228,6 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Total IVA:");
 
         txtTotalIvaVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -1230,7 +1237,6 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Total Bruto:");
 
         txtTotalBrutoVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -1240,7 +1246,6 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Total Neto:");
 
         txtTotalNetoVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -1250,7 +1255,6 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Total Descuento:");
 
         txtTotalDescuentoVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -1261,7 +1265,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnAddVenta.setBackground(new java.awt.Color(255, 255, 255));
         btnAddVenta.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnAddVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
         btnAddVenta.setText("Añadir");
         btnAddVenta.setBorder(null);
@@ -1398,7 +1401,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBuscarVenta.setBackground(new java.awt.Color(255, 255, 255));
         btnBuscarVenta.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBuscarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnBuscarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
         btnBuscarVenta.setText("Buscar");
         btnBuscarVenta.setBorder(null);
@@ -1411,7 +1413,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnEditarVenta.setBackground(new java.awt.Color(255, 255, 255));
         btnEditarVenta.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnEditarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnEditarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarVenta.setText("Editar");
         btnEditarVenta.setBorder(null);
@@ -1424,7 +1425,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnBorrarVenta.setBackground(new java.awt.Color(255, 255, 255));
         btnBorrarVenta.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBorrarVenta.setForeground(new java.awt.Color(0, 0, 0));
         btnBorrarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         btnBorrarVenta.setText("Borrar");
         btnBorrarVenta.setBorder(null);
@@ -1570,7 +1570,6 @@ public class Dashboard extends javax.swing.JFrame {
         btnVentas.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnVentas.setForeground(new java.awt.Color(255, 255, 255));
         btnVentas.setText("Ventas");
-        btnVentas.setActionCommand("Ventas");
         btnVentas.setBorder(null);
         btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVentas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1713,17 +1712,17 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverUsuarioActionPerformed
 
-    private void txtPrecioVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioVentaActionPerformed
+    private void txtPrecioProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioVentaActionPerformed
-
-    private void txtIdentificacionProducto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionProducto1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdentificacionProducto1ActionPerformed
+    }//GEN-LAST:event_txtPrecioProductoActionPerformed
 
     private void txtNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreProductoActionPerformed
+
+    private void txtIdProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdProductoActionPerformed
 
     private void txtFiltroProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroProductoActionPerformed
         // TODO add your handling code here:
@@ -1806,7 +1805,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverProveedoresActionPerformed
 
     private void btnVolverProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverProductosMouseClicked
-       listadoOpciones.setSelectedIndex(0);
+        listadoOpciones.setSelectedIndex(0);
     }//GEN-LAST:event_btnVolverProductosMouseClicked
 
     private void btnVolverProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverProductosActionPerformed
@@ -1963,16 +1962,16 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField txtFiltroIdentificacionUsuario;
     private javax.swing.JTextField txtFiltroProducto;
     private javax.swing.JTextField txtFiltroVenta;
+    private javax.swing.JTextField txtIdProducto;
     private javax.swing.JTextField txtIdVenta;
     private javax.swing.JTextField txtIdentificacionCliente;
-    private javax.swing.JTextField txtIdentificacionProducto1;
     private javax.swing.JTextField txtIdentificacionProveedor;
     private javax.swing.JTextField txtIdentificacionUsuario;
     private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtNombreProveedor;
     private javax.swing.JTextField txtNombreUsuario;
-    private javax.swing.JTextField txtPrecioVenta;
+    private javax.swing.JTextField txtPrecioProducto;
     private javax.swing.JTextField txtSubTotalVenta;
     private javax.swing.JTextField txtTelefonoCliente;
     private javax.swing.JTextField txtTelefonoUsuario;
