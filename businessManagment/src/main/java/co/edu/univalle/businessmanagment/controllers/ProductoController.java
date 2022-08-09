@@ -5,9 +5,7 @@
  */
 package co.edu.univalle.businessmanagment.controllers;
 
-import co.edu.univalle.businessmanagment.controllers.ClienteController.CargaClientes;
 import co.edu.univalle.businessmanagment.models.ProductoModel;
-import co.edu.univalle.businessmanagment.services.ProductosService;
 import co.edu.univalle.businessmanagment.services.ProductosService;
 import co.edu.univalle.businessmanagment.views.Dashboard;
 import java.awt.event.ActionEvent;
@@ -16,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
@@ -45,7 +44,6 @@ public class ProductoController {
 //        this();
 //        this.productoService = productoService;
 //    }
-    
     public void prepareListeners() {
         vista.addActionListenerBtnAddProducto(new ActionListener() {
             @Override
@@ -62,8 +60,47 @@ public class ProductoController {
                 }
             }
         });
+
+        vista.addActionListenerBtnBuscarProducto(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                CargaProductos carga = new CargaProductos(null, "BUSCAR_PRODUCTOS");
+                carga.execute();
+
+            }
+        });
+        
+        vista.addActionListenerBtnBorrarProducto(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    CargaProductos carga = new CargaProductos(null, "REMOVE_PRODUCTOS");
+                    carga.execute();
+                    if(carga.get()){
+                        new CargaProductos(null, "BUSCAR_PRODUCTOS").execute();
+                    }
+                } catch (InterruptedException | ExecutionException ex) {
+                    
+                }
+
+            }
+        });
+        
+        vista.addActionListenerBtnEditarProducto(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    if (vista.getProductoSelectedOnProductosTable()!= null) {
+                        vista.setDatosProductoFromProducto(vista.getProductoSelectedOnProductosTable());
+                    }
+                } catch (Exception ex) {
+                    logger.error(ex);
+                }
+
+            }
+        });
     }
-    
+
     public void cargarProductos() {
         try {
             productos = productoService.getAllProductos();
@@ -73,16 +110,27 @@ public class ProductoController {
             logger.error(ex);
         }
     }
+    
+    public void buscarProductos(){
+        String filtro = vista.getProductosFilter();
+        try {
+            productos = productoService.getProductosByFiltro(filtro);
+            vista.setProductosTableData(productos);
+        } catch (SQLException ex) {
+            logger.error(ex);
+        }
+    }
 
     public final ProductoModel nuevoProducto() {
         try {
             producto = new ProductoModel();
             vista.setDatosProductoFromProducto(producto);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(vista, "ERROR :" + ex.getMessage());
+            CargaProductos evento = new CargaProductos(null, "SHOW_DIALOG");
+            evento.setMessage("ERROR :" + ex.getMessage());
+            evento.execute();
         }
         return producto;
-
     }
 
     public void leerProductoFromView() {
@@ -109,6 +157,17 @@ public class ProductoController {
             CargaProductos evento = new CargaProductos(null, "SHOW_DIALOG");
             evento.setMessage("ERROR :" + ex.getMessage());
             evento.execute();
+        }
+    }
+    
+    private void eliminarProductosSeleccionados(){
+        try {
+            for (ProductoModel productoModel : vista.getProductosSelectedOnProductosTable()) {
+                productoService.deleteProducto(productoModel);
+            }
+            logger.info("Productos eliminados satisfactoriamente.");
+        } catch (Exception ex) {
+            logger.error(ex);
         }
     }
 
@@ -141,11 +200,11 @@ public class ProductoController {
                     leerProductoFromView();
                     guardarProducto();
                     break;
-                case "BUSCAR_PRODUCTO":
-//                    buscarProductos();
+                case "BUSCAR_PRODUCTOS":
+                    buscarProductos();
                     break;
                 case "REMOVE_PRODUCTOS":
-//                    eliminarProductosSeleccionados();
+                    eliminarProductosSeleccionados();
                     break;
                 case "SHOW_DIALOG":
                     JOptionPane.showMessageDialog(vista, message);

@@ -86,7 +86,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     public void addActionListenerBtnBorrarUsuario(ActionListener listener) {
-        btnActualizarUsuario.addActionListener(listener);
+        btnBorrarUsuario.addActionListener(listener);
     }
 
     public UsuarioModel getUsuarioSelectedOnUsuariosTable() {
@@ -190,6 +190,18 @@ public class Dashboard extends javax.swing.JFrame {
     public void addActionListenerBtnAddProducto(ActionListener listener){
         btnAddProducto.addActionListener(listener);
     }
+    
+    public void addActionListenerBtnBuscarProducto(ActionListener listener){
+        btnBuscarProducto.addActionListener(listener);
+    }
+    
+    public void addActionListenerBtnEditarProducto(ActionListener listener){
+        btnEditarProducto.addActionListener(listener);
+    }
+    
+    public void addActionListenerBtnBorrarProducto(ActionListener listener){
+        btnBorrarProducto.addActionListener(listener);
+    }
 
     public double obtenerPrecioBaseProducto() throws Exception {
         String valueString = txtPrecioProducto.getText();
@@ -218,6 +230,10 @@ public class Dashboard extends javax.swing.JFrame {
             productosSelected.add(productosTableModel.getProductoModelAt(i));
         }
         return productosSelected;
+    }
+    
+    public String getProductosFilter(){
+        return txtFiltroProducto.getText();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -255,7 +271,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnBuscarUsuario = new javax.swing.JButton();
         btnEditarUsuario = new javax.swing.JButton();
         btnActualizarUsuario = new javax.swing.JButton();
-        btnBorrarUsuario1 = new javax.swing.JButton();
+        btnBorrarUsuario = new javax.swing.JButton();
         btnVolverUsuario = new javax.swing.JButton();
         panelCliente = new javax.swing.JPanel();
         datosClientes = new javax.swing.JPanel();
@@ -380,7 +396,6 @@ public class Dashboard extends javax.swing.JFrame {
         backgroundDashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         listadoOpciones.setBackground(new java.awt.Color(255, 255, 255));
-        listadoOpciones.setForeground(new java.awt.Color(0, 0, 0));
 
         panelInicio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -568,12 +583,12 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        btnBorrarUsuario1.setBackground(new java.awt.Color(255, 255, 255));
-        btnBorrarUsuario1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBorrarUsuario1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        btnBorrarUsuario1.setText("Borrar");
-        btnBorrarUsuario1.setBorder(null);
-        btnBorrarUsuario1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBorrarUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        btnBorrarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBorrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
+        btnBorrarUsuario.setText("Borrar");
+        btnBorrarUsuario.setBorder(null);
+        btnBorrarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout registroUsuariosLayout = new javax.swing.GroupLayout(registroUsuarios);
         registroUsuarios.setLayout(registroUsuariosLayout);
@@ -597,7 +612,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(119, 119, 119)
                 .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBorrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -616,7 +631,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(registroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrarUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -1384,7 +1399,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(txtTotalDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1510,7 +1525,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(panelTotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtTotalNetoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelVentas.add(panelTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 700, 170));
@@ -2077,7 +2092,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrarCliente;
     private javax.swing.JButton btnBorrarProducto;
     private javax.swing.JButton btnBorrarProveedor;
-    private javax.swing.JButton btnBorrarUsuario1;
+    private javax.swing.JButton btnBorrarUsuario;
     private javax.swing.JButton btnBorrarVenta1;
     private javax.swing.JButton btnBorrarVenta2;
     private javax.swing.JButton btnBorrarVenta3;

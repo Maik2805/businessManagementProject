@@ -51,9 +51,6 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -387,7 +384,7 @@
                               <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                               <Component id="btnEditarUsuario" min="-2" pref="140" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnBorrarUsuario1" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="btnBorrarUsuario" min="-2" pref="140" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnActualizarUsuario" min="-2" pref="140" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
@@ -409,7 +406,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnEditarUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                                   <Component id="btnActualizarUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                                  <Component id="btnBorrarUsuario1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="btnBorrarUsuario" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="22" max="32767" attributes="0"/>
                           </Group>
@@ -521,7 +518,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarUsuarioActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnBorrarUsuario1">
+                    <Component class="javax.swing.JButton" name="btnBorrarUsuario">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -1924,7 +1921,7 @@
                                   <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="42" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnAddVenta" min="-2" pref="31" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -2196,7 +2193,7 @@
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtTotalNetoVenta" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="14" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
