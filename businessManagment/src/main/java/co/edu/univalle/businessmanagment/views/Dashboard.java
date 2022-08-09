@@ -190,6 +190,18 @@ public class Dashboard extends javax.swing.JFrame {
     public void addActionListenerBtnAddProducto(ActionListener listener){
         btnAddProducto.addActionListener(listener);
     }
+    
+    public void addActionListenerBtnBuscarProducto(ActionListener listener){
+        btnBuscarProducto.addActionListener(listener);
+    }
+    
+    public void addActionListenerBtnEditarProducto(ActionListener listener){
+        btnEditarProducto.addActionListener(listener);
+    }
+    
+    public void addActionListenerBtnBorrarProducto(ActionListener listener){
+        btnBorrarProducto.addActionListener(listener);
+    }
 
     public double obtenerPrecioBaseProducto() throws Exception {
         String valueString = txtPrecioProducto.getText();
@@ -218,6 +230,10 @@ public class Dashboard extends javax.swing.JFrame {
             productosSelected.add(productosTableModel.getProductoModelAt(i));
         }
         return productosSelected;
+    }
+    
+    public String getProductosFilter(){
+        return txtFiltroProducto.getText();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -1368,7 +1384,7 @@ public class Dashboard extends javax.swing.JFrame {
                                     .addComponent(jLabel14))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAddVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelVentas.add(datosVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));

@@ -45,12 +45,13 @@ public class ProductosService {
 
     }
     
-    public List<ProductoModel> getProductosByNombre(String nombre) throws SQLException {
-        final String SQL_SELECT = "SELECT * FROM business.productos WHERE nombre LIKE '%?%' AND is_deleted is false";
+    public List<ProductoModel> getProductosByFiltro(String nombre) throws SQLException {
+        final String SQL_SELECT = "SELECT * FROM business.productos WHERE (nombre LIKE ? OR id_producto LIKE ? ) AND is_deleted is false";
         List<ProductoModel> productos = new ArrayList<>();
         try (Connection conn = DbConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
-            preparedStatement.setString(1, nombre);
+            preparedStatement.setString(1, "%" + nombre + "%");
+            preparedStatement.setString(2, "%" + nombre + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 productos.add(resulsetToModel(resultSet));
