@@ -248,6 +248,13 @@ public class Dashboard extends javax.swing.JFrame {
         listadoOpciones = new javax.swing.JTabbedPane();
         panelInicio = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         panelUsuario = new javax.swing.JPanel();
         datosUsuarios = new javax.swing.JPanel();
         txt1 = new javax.swing.JLabel();
@@ -295,6 +302,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnBorrarCliente = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
+        btnRefrescarClientes = new javax.swing.JButton();
         btnVolverCliente = new javax.swing.JButton();
         panelProveedores = new javax.swing.JPanel();
         datosProveedores = new javax.swing.JPanel();
@@ -311,6 +319,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnBuscarProveedor = new javax.swing.JButton();
         btnEditarProveedor = new javax.swing.JButton();
         btnBorrarProveedor = new javax.swing.JButton();
+        btnRefrescarProveedores = new javax.swing.JButton();
         btnVolverProveedores = new javax.swing.JButton();
         panelProductos = new javax.swing.JPanel();
         datosProductos = new javax.swing.JPanel();
@@ -373,13 +382,12 @@ public class Dashboard extends javax.swing.JFrame {
         panelListaVentas = new javax.swing.JPanel();
         registroVentas1 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tablaVentas1 = new javax.swing.JTable();
+        tablaListadoVentas = new javax.swing.JTable();
         idVenta1 = new javax.swing.JLabel();
         txtFiltroVenta1 = new javax.swing.JTextField();
-        btnBuscarVenta1 = new javax.swing.JButton();
-        btnEditarVenta1 = new javax.swing.JButton();
-        btnBorrarVenta1 = new javax.swing.JButton();
-        btnBorrarVenta2 = new javax.swing.JButton();
+        btnBuscarListadoVentas = new javax.swing.JButton();
+        btnRefrescarListadoVentas = new javax.swing.JButton();
+        btnVolverListadoVentas = new javax.swing.JButton();
         panelDerechoBotones = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         btnUsuario = new javax.swing.JButton();
@@ -387,6 +395,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnProveedores = new javax.swing.JButton();
         btnProductos = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
+        btnRegistroVentas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -398,28 +407,83 @@ public class Dashboard extends javax.swing.JFrame {
         listadoOpciones.setBackground(new java.awt.Color(255, 255, 255));
 
         panelInicio.setBackground(new java.awt.Color(255, 255, 255));
+        panelInicio.setForeground(new java.awt.Color(0, 0, 0));
+        panelInicio.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel6.setText("¡Bienvenido al programa!");
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Bienvenido al programa");
+
+        jLabel22.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setText("Sistema de Gestión para la empresa \"Productos Saludables\". Aquí se gestionará toda la ");
+
+        jLabel23.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setText("información de los usuarios, clientes, proveedores, productos (distintas producciones),");
+
+        jLabel24.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("y ventas realizadas.");
+
+        jLabel25.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Este programa facilitará la gestión de cada proceso realizado por la empresa ya que ");
+
+        jLabel26.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("permite llevar un control completo y detallado de su empresa.");
+
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/inicio.png"))); // NOI18N
 
         javax.swing.GroupLayout panelInicioLayout = new javax.swing.GroupLayout(panelInicio);
         panelInicio.setLayout(panelInicioLayout);
         panelInicioLayout.setHorizontalGroup(
             panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInicioLayout.createSequentialGroup()
-                .addContainerGap(268, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(267, 267, 267))
+                .addContainerGap(108, Short.MAX_VALUE)
+                .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
+                        .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelInicioLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(142, 142, 142)))
+                        .addGap(125, 125, 125))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addGap(135, 135, 135))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(102, 102, 102))))
         );
         panelInicioLayout.setVerticalGroup(
             panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInicioLayout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addContainerGap(652, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel24)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel26)
+                .addGap(164, 164, 164)
+                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73))
         );
 
-        listadoOpciones.addTab("Incio", panelInicio);
+        listadoOpciones.addTab("Inicio", panelInicio);
 
         panelUsuario.setBackground(new java.awt.Color(255, 255, 255));
         panelUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -448,8 +512,8 @@ public class Dashboard extends javax.swing.JFrame {
         listTipoIdentificacionUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E", "NIT", "PEP" }));
 
         btnAddUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        btnAddUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
+        btnAddUsuario.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnAddUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Guardar.png"))); // NOI18N
         btnAddUsuario.setText("Guardar");
         btnAddUsuario.setToolTipText("");
         btnAddUsuario.setBorder(null);
@@ -500,9 +564,9 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addComponent(txtIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(datosUsuariosLayout.createSequentialGroup()
-                        .addGap(286, 286, 286)
-                        .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31))
+                        .addGap(320, 320, 320)
+                        .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         datosUsuariosLayout.setVerticalGroup(
             datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -517,14 +581,14 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(listTipoIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt4)
                     .addComponent(txtIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt6)
                     .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt10))
                 .addGap(28, 28, 28)
-                .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -548,7 +612,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBuscarUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBuscarUsuario.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnBuscarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarUsuario.setText("Buscar");
         btnBuscarUsuario.setBorder(null);
@@ -560,7 +624,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnEditarUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnEditarUsuario.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnEditarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarUsuario.setText("Editar");
         btnEditarUsuario.setBorder(null);
@@ -572,8 +636,8 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnActualizarUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        btnActualizarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnActualizarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnActualizarUsuario.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnActualizarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Actualizar.png"))); // NOI18N
         btnActualizarUsuario.setText("Actualizar");
         btnActualizarUsuario.setBorder(null);
         btnActualizarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -584,7 +648,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBorrarUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        btnBorrarUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBorrarUsuario.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnBorrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnBorrarUsuario.setText("Borrar");
         btnBorrarUsuario.setBorder(null);
@@ -598,23 +662,23 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(registroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registroUsuariosLayout.createSequentialGroup()
-                        .addGap(0, 169, Short.MAX_VALUE)
+                        .addGap(0, 174, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFiltroIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111))
+                        .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(175, 175, 175))
                     .addGroup(registroUsuariosLayout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addContainerGap())))
             .addGroup(registroUsuariosLayout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(212, 212, 212)
+                .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         registroUsuariosLayout.setVerticalGroup(
@@ -622,17 +686,17 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(registroUsuariosLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(registroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(txtFiltroIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(registroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         panelUsuario.add(registroUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 740, -1));
@@ -640,6 +704,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnVolverUsuario.setBackground(new java.awt.Color(153, 153, 153));
         btnVolverUsuario.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         btnVolverUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverUsuario.setText("Volver");
         btnVolverUsuario.setBorder(null);
         btnVolverUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -682,8 +747,8 @@ public class Dashboard extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnAddCliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnAddCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
+        btnAddCliente.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnAddCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Guardar.png"))); // NOI18N
         btnAddCliente.setText("Guardar");
         btnAddCliente.setToolTipText("");
         btnAddCliente.setBorder(null);
@@ -706,19 +771,19 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosClientesLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(188, 188, 188))
                     .addGroup(datosClientesLayout.createSequentialGroup()
-                        .addComponent(btnAddCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118))
-                    .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosClientesLayout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(188, 188, 188))
-                        .addGroup(datosClientesLayout.createSequentialGroup()
+                        .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txt9)
                                 .addComponent(txtEmailCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                                 .addComponent(txtTelefonoCliente))
-                            .addContainerGap()))))
+                            .addGroup(datosClientesLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(btnAddCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         datosClientesLayout.setVerticalGroup(
             datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -747,14 +812,15 @@ public class Dashboard extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txt8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAddCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(datosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAddCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(4, 4, 4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelCliente.add(datosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, -1));
+        panelCliente.add(datosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         registroClientes.setBackground(new java.awt.Color(255, 255, 255));
         registroClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -769,7 +835,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBuscarCliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscarCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBuscarCliente.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarCliente.setText("Buscar");
         btnBuscarCliente.setBorder(null);
@@ -781,7 +847,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnEditarCliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditarCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnEditarCliente.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnEditarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarCliente.setText("Editar");
         btnEditarCliente.setBorder(null);
@@ -793,7 +859,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBorrarCliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnBorrarCliente.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBorrarCliente.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnBorrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         btnBorrarCliente.setText("Borrar");
         btnBorrarCliente.setBorder(null);
@@ -803,23 +869,32 @@ public class Dashboard extends javax.swing.JFrame {
         tablaClientes.setModel(clientesTableModel);
         jScrollPane4.setViewportView(tablaClientes);
 
+        btnRefrescarClientes.setBackground(new java.awt.Color(255, 255, 255));
+        btnRefrescarClientes.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnRefrescarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Actualizar.png"))); // NOI18N
+        btnRefrescarClientes.setText("Refrescar");
+        btnRefrescarClientes.setBorder(null);
+        btnRefrescarClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout registroClientesLayout = new javax.swing.GroupLayout(registroClientes);
         registroClientes.setLayout(registroClientesLayout);
         registroClientesLayout.setHorizontalGroup(
             registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroClientesLayout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
+                .addContainerGap(177, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104))
+                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175))
             .addGroup(registroClientesLayout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(btnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(183, 183, 183)
+                .addComponent(btnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBorrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBorrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRefrescarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(registroClientesLayout.createSequentialGroup()
                 .addContainerGap()
@@ -833,21 +908,23 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBorrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRefrescarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8))
         );
 
-        panelCliente.add(registroClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 680, 380));
+        panelCliente.add(registroClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 740, 380));
 
         btnVolverCliente.setBackground(new java.awt.Color(153, 153, 153));
         btnVolverCliente.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         btnVolverCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverCliente.setText("Volver");
         btnVolverCliente.setBorder(null);
         btnVolverCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -863,13 +940,13 @@ public class Dashboard extends javax.swing.JFrame {
         });
         panelCliente.add(btnVolverCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 740, 90, 20));
 
-        listadoOpciones.addTab("Cliente", panelCliente);
+        listadoOpciones.addTab("Clientes", panelCliente);
 
         panelProveedores.setBackground(new java.awt.Color(255, 255, 255));
         panelProveedores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosProveedores.setBackground(new java.awt.Color(255, 255, 255));
-        datosProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        datosProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Proveedor", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         nombreProveedor.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         nombreProveedor.setText("Nombre:");
@@ -885,8 +962,8 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnAddProveedor.setBackground(new java.awt.Color(255, 255, 255));
-        btnAddProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnAddProveedor.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnAddProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Guardar.png"))); // NOI18N
         btnAddProveedor.setText("Guardar");
         btnAddProveedor.setToolTipText("");
         btnAddProveedor.setBorder(null);
@@ -902,14 +979,12 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(idProveedor)
                     .addComponent(nombreProveedor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(73, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosProveedoresLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAddProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(121, 121, 121))
         );
         datosProveedoresLayout.setVerticalGroup(
             datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -922,12 +997,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(datosProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idProveedor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btnAddProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(btnAddProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
-        panelProveedores.add(datosProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 68, -1, -1));
+        panelProveedores.add(datosProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
         registroProveedores.setBackground(new java.awt.Color(255, 255, 255));
         registroProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -955,8 +1030,8 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBuscarProveedor.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscarProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
+        btnBuscarProveedor.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnBuscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarProveedor.setText("Buscar");
         btnBuscarProveedor.setBorder(null);
         btnBuscarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -967,7 +1042,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnEditarProveedor.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditarProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnEditarProveedor.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnEditarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarProveedor.setText("Editar");
         btnEditarProveedor.setBorder(null);
@@ -979,29 +1054,38 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBorrarProveedor.setBackground(new java.awt.Color(255, 255, 255));
-        btnBorrarProveedor.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBorrarProveedor.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnBorrarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         btnBorrarProveedor.setText("Borrar");
         btnBorrarProveedor.setBorder(null);
         btnBorrarProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        btnRefrescarProveedores.setBackground(new java.awt.Color(255, 255, 255));
+        btnRefrescarProveedores.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnRefrescarProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Actualizar.png"))); // NOI18N
+        btnRefrescarProveedores.setText("Refrescar");
+        btnRefrescarProveedores.setBorder(null);
+        btnRefrescarProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout registroProveedoresLayout = new javax.swing.GroupLayout(registroProveedores);
         registroProveedores.setLayout(registroProveedoresLayout);
         registroProveedoresLayout.setHorizontalGroup(
             registroProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroProveedoresLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addContainerGap(168, Short.MAX_VALUE)
                 .addComponent(identificacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFiltroIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
+                .addComponent(btnBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175))
             .addGroup(registroProveedoresLayout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(btnEditarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(162, 162, 162)
+                .addComponent(btnEditarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBorrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBorrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRefrescarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane3)
         );
@@ -1012,21 +1096,23 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(registroProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(identificacion)
                     .addComponent(txtFiltroIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(registroProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRefrescarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8))
         );
 
-        panelProveedores.add(registroProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 314, -1, -1));
+        panelProveedores.add(registroProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 740, -1));
 
         btnVolverProveedores.setBackground(new java.awt.Color(153, 153, 153));
         btnVolverProveedores.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         btnVolverProveedores.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverProveedores.setText("Volver");
         btnVolverProveedores.setBorder(null);
         btnVolverProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1077,8 +1163,8 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnAddProducto.setBackground(new java.awt.Color(255, 255, 255));
-        btnAddProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAddProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/añadir.png"))); // NOI18N
+        btnAddProducto.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnAddProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Guardar.png"))); // NOI18N
         btnAddProducto.setText("Guardar");
         btnAddProducto.setToolTipText("");
         btnAddProducto.setBorder(null);
@@ -1137,7 +1223,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(14, 14, 14))
         );
 
-        panelProductos.add(datosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+        panelProductos.add(datosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
         registroProductos.setBackground(new java.awt.Color(255, 255, 255));
         registroProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Productos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
@@ -1156,7 +1242,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBuscarProducto.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscarProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBuscarProducto.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
         btnBuscarProducto.setText("Buscar");
         btnBuscarProducto.setBorder(null);
@@ -1168,7 +1254,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnEditarProducto.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditarProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnEditarProducto.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnEditarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
         btnEditarProducto.setText("Editar");
         btnEditarProducto.setBorder(null);
@@ -1180,7 +1266,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         btnBorrarProducto.setBackground(new java.awt.Color(255, 255, 255));
-        btnBorrarProducto.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnBorrarProducto.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         btnBorrarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
         btnBorrarProducto.setText("Borrar");
         btnBorrarProducto.setBorder(null);
@@ -1198,13 +1284,13 @@ public class Dashboard extends javax.swing.JFrame {
         registroProductosLayout.setHorizontalGroup(
             registroProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroProductosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
                 .addComponent(idProducto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFiltroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(159, 159, 159))
             .addGroup(registroProductosLayout.createSequentialGroup()
                 .addGap(153, 153, 153)
                 .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1215,8 +1301,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(registroProductosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane5)
+                .addContainerGap())
         );
         registroProductosLayout.setVerticalGroup(
             registroProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1225,7 +1311,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(registroProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idProducto)
                     .addComponent(txtFiltroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1236,11 +1322,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelProductos.add(registroProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 320, -1, -1));
+        panelProductos.add(registroProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 740, -1));
 
         btnVolverProductos.setBackground(new java.awt.Color(153, 153, 153));
         btnVolverProductos.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         btnVolverProductos.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverProductos.setText("Volver");
         btnVolverProductos.setBorder(null);
         btnVolverProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1267,6 +1354,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel7.setText("ID Venta: ");
 
+        txtIdVenta.setEditable(false);
+
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel8.setText("ID Usuario: ");
 
@@ -1283,6 +1372,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel17.setText("Vlr Producto:");
 
+        txtVlrProducto.setEditable(false);
         txtVlrProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVlrProductoActionPerformed(evt);
@@ -1295,6 +1385,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel19.setText("Descuento:");
 
+        txtTotal.setEditable(false);
+
         jLabel20.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel20.setText("Producto:");
 
@@ -1302,6 +1394,10 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel21.setText("Total Bruto: ");
+
+        txtTotalBruto.setEditable(false);
+
+        txtTotalDescuento.setEditable(false);
 
         btnAddVenta.setBackground(new java.awt.Color(255, 255, 255));
         btnAddVenta.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -1409,6 +1505,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnVolverVentas.setBackground(new java.awt.Color(153, 153, 153));
         btnVolverVentas.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         btnVolverVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverVentas.setText("Volver");
         btnVolverVentas.setBorder(null);
         btnVolverVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -1429,6 +1526,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel13.setText("Total Neto:");
 
+        txtTotalNetoVenta.setEditable(false);
         txtTotalNetoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalNetoVentaActionPerformed(evt);
@@ -1438,6 +1536,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel10.setText("Subtotal:");
 
+        txtSubTotalVenta.setEditable(false);
         txtSubTotalVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubTotalVentaActionPerformed(evt);
@@ -1453,18 +1552,21 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel14.setText("Total Descuento:");
 
+        txtTotalIvaVenta.setEditable(false);
         txtTotalIvaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalIvaVentaActionPerformed(evt);
             }
         });
 
+        txtTotalDescuentoVenta.setEditable(false);
         txtTotalDescuentoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalDescuentoVentaActionPerformed(evt);
             }
         });
 
+        txtTotalBrutoVenta.setEditable(false);
         txtTotalBrutoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalBrutoVentaActionPerformed(evt);
@@ -1582,8 +1684,8 @@ public class Dashboard extends javax.swing.JFrame {
         registroVentas1.setBackground(new java.awt.Color(255, 255, 255));
         registroVentas1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Ventas", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
-        tablaVentas1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        tablaVentas1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaListadoVentas.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        tablaListadoVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -1594,7 +1696,7 @@ public class Dashboard extends javax.swing.JFrame {
                 "ID Usuario", "ID Venta", "ID Cliente", "Subtotal", "Total Iva", "Total Bruto", "Total Neto", "Total Descuento"
             }
         ));
-        jScrollPane7.setViewportView(tablaVentas1);
+        jScrollPane7.setViewportView(tablaListadoVentas);
 
         idVenta1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         idVenta1.setText("ID Venta: ");
@@ -1605,68 +1707,47 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        btnBuscarVenta1.setBackground(new java.awt.Color(255, 255, 255));
-        btnBuscarVenta1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnBuscarVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
-        btnBuscarVenta1.setText("Buscar");
-        btnBuscarVenta1.setBorder(null);
-        btnBuscarVenta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnBuscarVenta1.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscarListadoVentas.setBackground(new java.awt.Color(255, 255, 255));
+        btnBuscarListadoVentas.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnBuscarListadoVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscar.png"))); // NOI18N
+        btnBuscarListadoVentas.setText("Buscar");
+        btnBuscarListadoVentas.setBorder(null);
+        btnBuscarListadoVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarListadoVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarVenta1ActionPerformed(evt);
+                btnBuscarListadoVentasActionPerformed(evt);
             }
         });
 
-        btnEditarVenta1.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditarVenta1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnEditarVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/editar.png"))); // NOI18N
-        btnEditarVenta1.setText("Editar");
-        btnEditarVenta1.setBorder(null);
-        btnEditarVenta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnEditarVenta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarVenta1ActionPerformed(evt);
-            }
-        });
-
-        btnBorrarVenta1.setBackground(new java.awt.Color(255, 255, 255));
-        btnBorrarVenta1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnBorrarVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/borrar.png"))); // NOI18N
-        btnBorrarVenta1.setText("Borrar");
-        btnBorrarVenta1.setBorder(null);
-        btnBorrarVenta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        btnBorrarVenta2.setBackground(new java.awt.Color(255, 255, 255));
-        btnBorrarVenta2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnBorrarVenta2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Actualizar.png"))); // NOI18N
-        btnBorrarVenta2.setText("Refrescar");
-        btnBorrarVenta2.setBorder(null);
-        btnBorrarVenta2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRefrescarListadoVentas.setBackground(new java.awt.Color(255, 255, 255));
+        btnRefrescarListadoVentas.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnRefrescarListadoVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Actualizar.png"))); // NOI18N
+        btnRefrescarListadoVentas.setText("Refrescar");
+        btnRefrescarListadoVentas.setBorder(null);
+        btnRefrescarListadoVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout registroVentas1Layout = new javax.swing.GroupLayout(registroVentas1);
         registroVentas1.setLayout(registroVentas1Layout);
         registroVentas1Layout.setHorizontalGroup(
             registroVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroVentas1Layout.createSequentialGroup()
-                .addContainerGap(121, Short.MAX_VALUE)
-                .addComponent(idVenta1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltroVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscarVenta1, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                .addGap(128, 128, 128))
-            .addGroup(registroVentas1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7)
-                .addContainerGap())
+                .addGroup(registroVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registroVentas1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registroVentas1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(idVenta1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFiltroVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscarListadoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(178, 178, 178))))
             .addGroup(registroVentas1Layout.createSequentialGroup()
-                .addGap(184, 184, 184)
-                .addComponent(btnEditarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBorrarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBorrarVenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(331, 331, 331)
+                .addComponent(btnRefrescarListadoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         registroVentas1Layout.setVerticalGroup(
             registroVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1675,32 +1756,53 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(registroVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idVenta1)
                     .addComponent(txtFiltroVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuscarListadoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(registroVentas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrarVenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBorrarVenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnRefrescarListadoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
+
+        btnVolverListadoVentas.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolverListadoVentas.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
+        btnVolverListadoVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverListadoVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
+        btnVolverListadoVentas.setText("Volver");
+        btnVolverListadoVentas.setBorder(null);
+        btnVolverListadoVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolverListadoVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVolverListadoVentasMouseClicked(evt);
+            }
+        });
+        btnVolverListadoVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverListadoVentasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelListaVentasLayout = new javax.swing.GroupLayout(panelListaVentas);
         panelListaVentas.setLayout(panelListaVentasLayout);
         panelListaVentasLayout.setHorizontalGroup(
             panelListaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListaVentasLayout.createSequentialGroup()
+                .addContainerGap(669, Short.MAX_VALUE)
+                .addComponent(btnVolverListadoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
             .addGroup(panelListaVentasLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(registroVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addComponent(registroVentas1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
         );
         panelListaVentasLayout.setVerticalGroup(
             panelListaVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelListaVentasLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
+                .addGap(102, 102, 102)
                 .addComponent(registroVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addComponent(btnVolverListadoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         listadoOpciones.addTab("Listado Ventas", panelListaVentas);
@@ -1714,9 +1816,12 @@ public class Dashboard extends javax.swing.JFrame {
         btnUsuario.setBackground(new java.awt.Color(153, 153, 153));
         btnUsuario.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/usuario.png"))); // NOI18N
         btnUsuario.setText("Usuarios");
         btnUsuario.setBorder(null);
-        btnUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnUsuario.setIconTextGap(10);
         btnUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnUsuarioMouseClicked(evt);
@@ -1731,9 +1836,12 @@ public class Dashboard extends javax.swing.JFrame {
         btnClientes.setBackground(new java.awt.Color(153, 153, 153));
         btnClientes.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnClientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clientes.png"))); // NOI18N
         btnClientes.setText("Clientes");
         btnClientes.setBorder(null);
-        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClientes.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnClientes.setIconTextGap(10);
         btnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnClientesMouseClicked(evt);
@@ -1748,9 +1856,12 @@ public class Dashboard extends javax.swing.JFrame {
         btnProveedores.setBackground(new java.awt.Color(153, 153, 153));
         btnProveedores.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnProveedores.setForeground(new java.awt.Color(255, 255, 255));
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/provedores.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
         btnProveedores.setBorder(null);
-        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProveedores.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnProveedores.setIconTextGap(10);
         btnProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProveedoresMouseClicked(evt);
@@ -1765,9 +1876,12 @@ public class Dashboard extends javax.swing.JFrame {
         btnProductos.setBackground(new java.awt.Color(153, 153, 153));
         btnProductos.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnProductos.setForeground(new java.awt.Color(255, 255, 255));
+        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/productos.png"))); // NOI18N
         btnProductos.setText("Productos");
         btnProductos.setBorder(null);
-        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnProductos.setIconTextGap(10);
         btnProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnProductosMouseClicked(evt);
@@ -1782,9 +1896,12 @@ public class Dashboard extends javax.swing.JFrame {
         btnVentas.setBackground(new java.awt.Color(153, 153, 153));
         btnVentas.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ventas.png"))); // NOI18N
         btnVentas.setText("Ventas");
         btnVentas.setBorder(null);
-        btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVentas.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnVentas.setIconTextGap(10);
         btnVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVentasMouseClicked(evt);
@@ -1793,6 +1910,21 @@ public class Dashboard extends javax.swing.JFrame {
         btnVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVentasActionPerformed(evt);
+            }
+        });
+
+        btnRegistroVentas.setBackground(new java.awt.Color(153, 153, 153));
+        btnRegistroVentas.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnRegistroVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistroVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/RegistroVentas.png"))); // NOI18N
+        btnRegistroVentas.setText("Reg. Ventas");
+        btnRegistroVentas.setBorder(null);
+        btnRegistroVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegistroVentas.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnRegistroVentas.setIconTextGap(10);
+        btnRegistroVentas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistroVentasMouseClicked(evt);
             }
         });
 
@@ -1809,7 +1941,8 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegistroVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerechoBotonesLayout.createSequentialGroup()
                         .addComponent(jLabel15)
@@ -1820,7 +1953,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(panelDerechoBotonesLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addGap(62, 62, 62)
                 .addComponent(btnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1830,7 +1963,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnRegistroVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(260, Short.MAX_VALUE))
         );
 
         backgroundDashboard.add(panelDerechoBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 220, 810));
@@ -2029,13 +2164,9 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFiltroVenta1ActionPerformed
 
-    private void btnBuscarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVenta1ActionPerformed
+    private void btnBuscarListadoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarListadoVentasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarVenta1ActionPerformed
-
-    private void btnEditarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarVenta1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarVenta1ActionPerformed
+    }//GEN-LAST:event_btnBuscarListadoVentasActionPerformed
 
     private void txtVlrProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVlrProductoActionPerformed
         // TODO add your handling code here:
@@ -2044,6 +2175,18 @@ public class Dashboard extends javax.swing.JFrame {
     private void btnAddVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVenta1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddVenta1ActionPerformed
+
+    private void btnVolverListadoVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverListadoVentasMouseClicked
+        listadoOpciones.setSelectedIndex(0);
+    }//GEN-LAST:event_btnVolverListadoVentasMouseClicked
+
+    private void btnVolverListadoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverListadoVentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVolverListadoVentasActionPerformed
+
+    private void btnRegistroVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroVentasMouseClicked
+        listadoOpciones.setSelectedIndex(6);
+    }//GEN-LAST:event_btnRegistroVentasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2093,25 +2236,27 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrarProducto;
     private javax.swing.JButton btnBorrarProveedor;
     private javax.swing.JButton btnBorrarUsuario;
-    private javax.swing.JButton btnBorrarVenta1;
-    private javax.swing.JButton btnBorrarVenta2;
     private javax.swing.JButton btnBorrarVenta3;
     private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnBuscarListadoVentas;
     private javax.swing.JButton btnBuscarProducto;
     private javax.swing.JButton btnBuscarProveedor;
     private javax.swing.JButton btnBuscarUsuario;
-    private javax.swing.JButton btnBuscarVenta1;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnEditarCliente;
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEditarProveedor;
     private javax.swing.JButton btnEditarUsuario;
-    private javax.swing.JButton btnEditarVenta1;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
+    private javax.swing.JButton btnRefrescarClientes;
+    private javax.swing.JButton btnRefrescarListadoVentas;
+    private javax.swing.JButton btnRefrescarProveedores;
+    private javax.swing.JButton btnRegistroVentas;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JButton btnVentas;
     private javax.swing.JButton btnVolverCliente;
+    private javax.swing.JButton btnVolverListadoVentas;
     private javax.swing.JButton btnVolverProductos;
     private javax.swing.JButton btnVolverProveedores;
     private javax.swing.JButton btnVolverUsuario;
@@ -2140,6 +2285,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2155,6 +2306,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JComboBox<String> listEstadoProducto;
     private javax.swing.JComboBox<String> listIdCliente;
     private javax.swing.JComboBox<String> listIdUsuario;
@@ -2178,11 +2330,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel registroUsuarios;
     private javax.swing.JPanel registroVentas1;
     private javax.swing.JTable tablaClientes;
+    private javax.swing.JTable tablaListadoVentas;
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTable tablaProductosVenta;
     private javax.swing.JTable tablaProveedores;
     private javax.swing.JTable tablaUsuarios;
-    private javax.swing.JTable tablaVentas1;
     private javax.swing.JLabel txt1;
     private javax.swing.JLabel txt10;
     private javax.swing.JLabel txt2;
