@@ -2,7 +2,6 @@ package co.edu.univalle.businessmanagment.views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 public class SplashScreen extends javax.swing.JFrame {
@@ -13,7 +12,7 @@ public class SplashScreen extends javax.swing.JFrame {
     public SplashScreen(javax.swing.JFrame nextView) {
         initComponents();
         this.setLocationRelativeTo(null);
-//        loadSplashScreen(nextView);
+//      loadSplashScreen(nextView);
     }
 
     public void loadSplashScreen(javax.swing.JFrame nextView) {
@@ -31,11 +30,10 @@ public class SplashScreen extends javax.swing.JFrame {
                 timer.stop();
                 dispose();
 
-                nextView.setTitle("Sistema de Gestión");
+                nextView.setTitle("Sistema de Gestión - ACMA Productos Saludables");
                 nextView.setVisible(true);
             }
         };
-
         timer = new Timer(50, action);
         timer.start();
     }
