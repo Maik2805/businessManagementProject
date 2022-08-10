@@ -114,10 +114,14 @@ public class ClienteController {
             vista.setClientesTableData(clientes);
         } catch (SQLException ex) {
             logger.error(ex);
-            JOptionPane.showMessageDialog(null, "FATAL_ERROR :" + ex.getMessage());
+            CargaClientes evento = new CargaClientes(null, "SHOW_DIALOG");
+            evento.setMessage("FATAL_ERROR :" + ex.getMessage());
+            evento.execute();
         } catch (Exception ex) {
             logger.error(ex);
-            JOptionPane.showMessageDialog(null, "ERROR :" + ex.getMessage());
+            CargaClientes evento = new CargaClientes(null, "SHOW_DIALOG");
+            evento.setMessage("ERROR :" + ex.getMessage());
+            evento.execute();
         }
     }
 
@@ -147,10 +151,14 @@ public class ClienteController {
             clienteService.createOrUpdateCliente(cliente);
         } catch (SQLException ex) {
             logger.error(ex);
-            JOptionPane.showMessageDialog(null, "FATAL_ERROR :" + ex.getMessage());
+            CargaClientes evento = new CargaClientes(null, "SHOW_DIALOG");
+            evento.setMessage( "FATAL_ERROR :" + ex.getMessage());
+            evento.execute();
         } catch (Exception ex) {
             logger.error(ex);
-            JOptionPane.showMessageDialog(null, "ERROR :" + ex.getMessage());
+            CargaClientes evento = new CargaClientes(null, "SHOW_DIALOG");
+            evento.setMessage("ERROR :" + ex.getMessage());
+            evento.execute();
         }
     }
     
@@ -169,10 +177,15 @@ public class ClienteController {
 
         JLabel etiqueta;
         String metodo = "";
-
+        String message = "";
+        
         public CargaClientes(JLabel label, String method) {
             etiqueta = label;
             metodo = method;
+        }
+        
+        public void setMessage(String message) {
+            this.message = message;
         }
 
         @Override
@@ -194,6 +207,9 @@ public class ClienteController {
                     break;
                 case "REMOVE_CLIENTES":
                     eliminarClientesSeleccionados();
+                    break;
+                case "SHOW_DIALOG":
+                    JOptionPane.showMessageDialog(vista, message);
                     break;
                 default:
                     cargarClientes();

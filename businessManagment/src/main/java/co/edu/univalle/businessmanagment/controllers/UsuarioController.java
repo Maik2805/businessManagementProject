@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
@@ -146,10 +145,14 @@ public class UsuarioController {
             usuarioService.createOrUpdateUsuario(usuario);
         } catch (SQLException ex) {
             logger.error(ex);
-            JOptionPane.showMessageDialog(vista, "FATAL_ERROR :" + ex.getMessage());
+            CargaUsuarios evento = new CargaUsuarios(null, "SHOW_DIALOG");
+            evento.setMessage("FATAL_ERROR :" + ex.getMessage());
+            evento.execute();
         } catch (Exception ex) {
             logger.error(ex);
-            JOptionPane.showMessageDialog(vista, "ERROR :" + ex.getMessage());
+            CargaUsuarios evento = new CargaUsuarios(null, "SHOW_DIALOG");
+            evento.setMessage("ERROR :" + ex.getMessage());
+            evento.execute();
         }
     }
 
@@ -168,12 +171,17 @@ public class UsuarioController {
 
         JLabel etiqueta;
         String metodo = "";
+        String message = "";
 
         public CargaUsuarios(JLabel label, String method) {
             etiqueta = label;
             metodo = method;
         }
 
+        public void setMessage(String message) {
+            this.message = message;
+        }
+                
         @Override
         protected Boolean doInBackground() throws Exception {
             if (etiqueta != null) {
@@ -193,6 +201,9 @@ public class UsuarioController {
                     break;
                 case "REMOVE_USUARIOS":
                     eliminarUsuariosSeleccionados();
+                    break;
+                case "SHOW_DIALOG":
+                    JOptionPane.showMessageDialog(vista, message);
                     break;
                 default:
                     cargarUsuarios();
