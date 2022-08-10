@@ -271,6 +271,10 @@ public class Dashboard extends javax.swing.JFrame {
         btnGuardarVenta.addActionListener(listener);
     }
     
+    public void addActionListenerBtnRefrescarVentas(ActionListener listener){
+        btnRefrescarVentas.addActionListener(listener);
+    }
+    
     public void setTxtIdVenta(String idVenta){
         txtIdVenta.setText(idVenta);
     }

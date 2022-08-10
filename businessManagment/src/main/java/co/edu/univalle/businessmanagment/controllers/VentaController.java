@@ -116,6 +116,15 @@ public class VentaController {
             }
         });
         
+                
+        vista.addActionListenerBtnRefrescarVentas(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                CargaVentas carga = new CargaVentas(null, "REFRESH_ALL_VENTA");
+                carga.execute();
+            }
+        });
+        
     }
 
     public void cargarClientes() {
@@ -210,6 +219,9 @@ public class VentaController {
         venta = new VentaModel();
         venta.setDetalle(new ArrayList<>());
         vista.setTxtIdVenta(venta.getIdVenta());
+        setDetalleVentaTableData();
+        setDetalleVentaInView();
+        vista.setTotalVenta(venta);
         return venta;
     }
 
@@ -276,6 +288,10 @@ public class VentaController {
             for (DetalleVentaModel detalleVentaModel : venta.getDetalle()) {
                 ventaService.createDetalleVenta(venta.getIdVenta(), detalleVentaModel);
             }
+            iniciarVenta();
+            CargaVentas carga = new CargaVentas(null, "SHOW_DIALOG");
+            carga.setMessage("Venta Guardada Satisfactoriamente");
+            carga.execute();
         } catch (Exception ex) {
             logger.info(ex);
             CargaVentas carga = new CargaVentas(null, "SHOW_DIALOG");
@@ -323,8 +339,12 @@ public class VentaController {
                     setDetalleVentaTableData();
                     calcularTotales();
                     break;
-                case "BUSCAR_VENTAS":
-//                    buscarProductos();
+                case "REFRESH_ALL_VENTA":
+                    cargarProductos();
+                    cargarUsuarios();
+                    cargarClientes();
+                    calcularTotalesProductoVenta();
+                    calcularTotales();
                     break;
                 case "REMOVE_VENTAS":
 //                    eliminarProductosSeleccionados();
