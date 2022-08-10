@@ -13,11 +13,13 @@ public class AvailableProductVModel {
     private int cantidadDisponible;
     private String idProducto;
     private String nombreProducto;
+    private double precioVentaProducto;
 
-    public AvailableProductVModel(int cantidadDisponible, String idProducto, String nombreProducto) {
+    public AvailableProductVModel(int cantidadDisponible, String idProducto, String nombreProducto, Double precio) {
         this.cantidadDisponible = cantidadDisponible;
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
+        this.precioVentaProducto = precio;
     }
 
     public int getCantidadDisponible() {
@@ -43,6 +45,13 @@ public class AvailableProductVModel {
     public void setNombreProducto(String nombreProducto) {
         this.nombreProducto = nombreProducto;
     }
-    
-    
+
+    public double getPrecioVentaProducto() {
+        return precioVentaProducto;
+    }
+
+    public void setPrecioVentaProducto(double precioVentaProducto) {
+        this.precioVentaProducto = precioVentaProducto;
+    }
+
 }

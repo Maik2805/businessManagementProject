@@ -21,8 +21,13 @@ import org.apache.logging.log4j.LogManager;
  * @author miccarurb
  */
 public class ProductosService {
-
     private static final Logger logger = LogManager.getLogger(ProductosService.class);
+    
+    StockService stockService;
+
+    public ProductosService() {
+        stockService = new StockService();
+    }
 
     public ProductoModel findProductoById(String idProducto) throws SQLException {
         final String SQL_SELECT = "SELECT * FROM business.productos where id_producto = ? and is_deleted is false";
@@ -123,6 +128,7 @@ public class ProductosService {
             preparedStatement.close();
 
         }
+        stockService.insertDefaultStock(producto.getIdProducto());
         return result;
     }
     

@@ -74,10 +74,13 @@ public class ProductoController {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 try {
-                    CargaProductos carga = new CargaProductos(null, "REMOVE_PRODUCTOS");
-                    carga.execute();
-                    if(carga.get()){
-                        new CargaProductos(null, "BUSCAR_PRODUCTOS").execute();
+                    int confirmacionResult = JOptionPane.showConfirmDialog(vista, "Seguro que deseas borrar los Productos selecionados?", "Warning", 0);
+                    if (confirmacionResult == JOptionPane.YES_OPTION) {
+                        CargaProductos carga = new CargaProductos(null, "REMOVE_PRODUCTOS");
+                        carga.execute();
+                        if(carga.get()){
+                            new CargaProductos(null, "BUSCAR_PRODUCTOS").execute();
+                        }
                     }
                 } catch (InterruptedException | ExecutionException ex) {
                     

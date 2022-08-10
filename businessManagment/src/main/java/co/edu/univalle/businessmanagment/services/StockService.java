@@ -9,6 +9,7 @@ import co.edu.univalle.businessmanagment.config.DbConnection;
 import co.edu.univalle.businessmanagment.models.ProductoModel;
 import co.edu.univalle.businessmanagment.models.VentaModel;
 import co.edu.univalle.businessmanagment.models.virtuals.AvailableProductVModel;
+import co.edu.univalle.businessmanagment.utils.UuidHelper;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,8 +49,8 @@ public class StockService {
     }
     
     public List<AvailableProductVModel> obtenerStock() throws SQLException{
-        final String SQL_SELECT = "select SUM(sp.cantidad_disponible) as total, sp.id_producto,  p.nombre  from business.stock_productos sp " +
-        "inner join business.productos p on sp.id_producto = p.id_producto sp.is_deleted is false and p.id_deleted is false group by sp.id_producto,  p.nombre;";
+        final String SQL_SELECT = "select SUM(sp.cantidad_disponible) as total, sp.id_producto,  p.nombre, p.precio_venta_base  from business.stock_productos sp " +
+        "inner join business.productos p on sp.id_producto = p.id_producto where sp.is_deleted is false and p.is_deleted is false group by sp.id_producto,  p.nombre, p.precio_venta_base";
         try (Connection conn = DbConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -58,7 +59,8 @@ public class StockService {
                 int cantidad = resultSet.getInt("total");
                 String id_producto = resultSet.getString("id_producto");
                 String nombre = resultSet.getString("nombre");
-                resultado.add(new AvailableProductVModel(cantidad, id_producto, nombre));
+                double precio = resultSet.getDouble("precio_venta_base");
+                resultado.add(new AvailableProductVModel(cantidad, id_producto, nombre, precio));
             }
             preparedStatement.close();
             resultSet.close();
@@ -66,6 +68,27 @@ public class StockService {
         } catch (SQLException e) {
             throw e;
         }
+    }
+    
+    public int insertDefaultStock(String producto_id) throws SQLException, Exception {
+        if (producto_id == null || producto_id.trim().isEmpty()) {
+            throw new Exception("El campo Id Producto no puede estar vacío");
+        }
+        int result = 0;
+        String idAleatorio = UuidHelper.generate();
+        String sql = "INSERT INTO business.stock_productos (id_stock, id_lote, id_producto, cantidad_inicial, cantidad_disponible, estado) " 
+                + " VALUES(?, NULL, ? , 9999, 9999, 'Activo')";
+        try (Connection conn = DbConnection.getConnection();
+                PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, idAleatorio);
+            preparedStatement.setString(2, producto_id);
+
+            result = preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+        }
+        return result;
     }
     
 }
