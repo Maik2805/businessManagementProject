@@ -8,6 +8,7 @@ import co.edu.univalle.businessmanagment.models.ClienteModel;
 import co.edu.univalle.businessmanagment.models.DetalleVentaModel;
 import co.edu.univalle.businessmanagment.models.ProductoModel;
 import co.edu.univalle.businessmanagment.models.UsuarioModel;
+import co.edu.univalle.businessmanagment.models.VentaModel;
 import co.edu.univalle.businessmanagment.models.virtuals.AvailableProductVModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.ClienteTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.DetalleVentaTableModel;
@@ -253,12 +254,39 @@ public class Dashboard extends javax.swing.JFrame {
     public void addActionListenerListProductoVenta(ActionListener listener){
         listProducto.addActionListener(listener);
     }
+    
+    public void addActionListenerTxtCantidadDeseadaProducto(ActionListener listener){
+        txtCantidadDeseadaProducto.addActionListener(listener);
+    }
+            
+    public void addActionListenerTxtTotalDescuento(ActionListener listener){
+        txtTotalDescuento.addActionListener(listener);
+    }
+    
+    public void addActionListenerBtnAddVenta(ActionListener listener){
+        btnAddVenta.addActionListener(listener);
+    }
+    
+    public void addActionListenerBtnGuardarVenta(ActionListener listener){
+        btnGuardarVenta.addActionListener(listener);
+    }
+    
+    public void setTxtIdVenta(String idVenta){
+        txtIdVenta.setText(idVenta);
+    }
     public void setUsuariosVentasList(List<UsuarioModel> usuarios){
         listIdUsuario.removeAllItems();
         for (UsuarioModel usuario : usuarios) {
             listIdUsuario.addItem(usuario.getNombre() + " " + usuario.getApellido());
         }
         if(usuarios.size() > 0) listIdUsuario.setSelectedIndex(0);
+    }
+    
+    public int getUsuarioVentaIndex(){
+        return listIdUsuario.getSelectedIndex();
+    }
+    public int getClienteVentaIndex(){
+        return listIdCliente.getSelectedIndex();
     }
     
     public void setClientesVentasList(List<ClienteModel> clientes){
@@ -283,6 +311,35 @@ public class Dashboard extends javax.swing.JFrame {
     
     public void setValorProductoVenta(String valor){
         txtVlrProductoVenta.setText(valor);
+    }
+    
+    public void setTotalesProductoFromDetalle(DetalleVentaModel detalleVenta){
+        txtTotalBruto.setText(String.valueOf(detalleVenta.getTotalBruto()));
+        txtTotalDescuento.setText(String.valueOf(detalleVenta.getDescuento()));
+        txtTotalProductoVenta.setText(String.valueOf(detalleVenta.getTotalNeto()));
+    }
+    
+    public double getTotalDescuentoProducto() throws Exception{
+        try {
+            return Double.valueOf(txtTotalDescuento.getText());
+        } catch (Exception e) {
+            throw new Exception("El valor del descuentp del producto debe ser un numero.");
+        }
+    }
+    public int getCantidadProductoDeseado() throws Exception{
+        try {
+            return Integer.valueOf(txtCantidadDeseadaProducto.getText());
+        } catch (Exception e) {
+            throw new Exception("La cantidad del producto debe ser un numero.");
+        }
+    }
+    
+    public void setTotalVenta(VentaModel venta){
+        txtSubTotalVenta.setText(String.valueOf(venta.getSubtotal()));
+        txtTotalDescuentoVenta.setText(String.valueOf(venta.getTotalDescuento()));
+        txtTotalIvaVenta.setText(String.valueOf(venta.getTotalIva()));
+        txtTotalBrutoVenta.setText(String.valueOf(venta.getTotalBruto()));
+        txtTotalNetoVenta.setText(String.valueOf(venta.getTotalNeto()));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -401,12 +458,12 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         listIdCliente = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        txtCantidad = new javax.swing.JTextField();
+        txtCantidadDeseadaProducto = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         txtVlrProductoVenta = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JTextField();
+        txtTotalProductoVenta = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         listProducto = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
@@ -677,7 +734,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel3.setText("Identificación:");
 
-        txtFiltroIdentificacionUsuario.setBackground(new java.awt.Color(255, 255, 255));
         txtFiltroIdentificacionUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtFiltroIdentificacionUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtFiltroIdentificacionUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -778,7 +834,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnVolverUsuario.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverUsuario.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverUsuario.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverUsuario.setText("Volver");
         btnVolverUsuario.setBorder(null);
@@ -913,7 +968,6 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel5.setText("Identificación: ");
 
-        txtFiltroIdentificacionCliente.setBackground(new java.awt.Color(255, 255, 255));
         txtFiltroIdentificacionCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtFiltroIdentificacionCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtFiltroIdentificacionCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -1012,7 +1066,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnVolverCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverCliente.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverCliente.setText("Volver");
         btnVolverCliente.setBorder(null);
@@ -1207,7 +1260,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnVolverProveedores.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverProveedores.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverProveedores.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverProveedores.setText("Volver");
         btnVolverProveedores.setBorder(null);
@@ -1427,7 +1479,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnVolverProductos.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverProductos.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverProductos.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverProductos.setText("Volver");
         btnVolverProductos.setBorder(null);
@@ -1471,8 +1522,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel16.setText("Cant.:");
 
-        txtCantidad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        txtCantidad.setText("0");
+        txtCantidadDeseadaProducto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtCantidadDeseadaProducto.setText("0");
 
         jLabel17.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel17.setText("Vlr Producto:");
@@ -1491,8 +1542,8 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel19.setText("Descuento:");
 
-        txtTotal.setEditable(false);
-        txtTotal.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtTotalProductoVenta.setEditable(false);
+        txtTotalProductoVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel20.setText("Producto:");
@@ -1505,8 +1556,8 @@ public class Dashboard extends javax.swing.JFrame {
         txtTotalBruto.setEditable(false);
         txtTotalBruto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
-        txtTotalDescuento.setEditable(false);
         txtTotalDescuento.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtTotalDescuento.setText("0");
 
         btnAddVenta.setBackground(new java.awt.Color(255, 255, 255));
         btnAddVenta.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -1553,7 +1604,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtVlrProductoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidadDeseadaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(55, 55, 55))
                     .addGroup(datosVentaLayout.createSequentialGroup()
@@ -1567,7 +1618,7 @@ public class Dashboard extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTotalProductoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
         );
         datosVentaLayout.setVerticalGroup(
@@ -1584,7 +1635,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(listIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantidadDeseadaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -1598,7 +1649,7 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotalDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalProductoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAddVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -1608,7 +1659,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnVolverVentas.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverVentas.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverVentas.setText("Volver");
         btnVolverVentas.setBorder(null);
@@ -1741,17 +1791,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        tablaProductosVenta.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        tablaProductosVenta.setModel(detallesVentaTableModel);
         jScrollPane2.setViewportView(tablaProductosVenta);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1884,7 +1924,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         btnVolverListadoVentas.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverListadoVentas.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverListadoVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverListadoVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverListadoVentas.setText("Volver");
         btnVolverListadoVentas.setBorder(null);
@@ -2474,7 +2513,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel txt9;
     private javax.swing.JTextField txtApellidoCliente;
     private javax.swing.JTextField txtApellidoUsuario;
-    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCantidadDeseadaProducto;
     private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JTextField txtEmailUsuario;
     private javax.swing.JTextField txtFiltroIdentificacionCliente;
@@ -2495,13 +2534,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField txtSubTotalVenta;
     private javax.swing.JTextField txtTelefonoCliente;
     private javax.swing.JTextField txtTelefonoUsuario;
-    private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtTotalBruto;
     private javax.swing.JTextField txtTotalBrutoVenta;
     private javax.swing.JTextField txtTotalDescuento;
     private javax.swing.JTextField txtTotalDescuentoVenta;
     private javax.swing.JTextField txtTotalIvaVenta;
     private javax.swing.JTextField txtTotalNetoVenta;
+    private javax.swing.JTextField txtTotalProductoVenta;
     private javax.swing.JTextField txtVlrProductoVenta;
     // End of variables declaration//GEN-END:variables
 }

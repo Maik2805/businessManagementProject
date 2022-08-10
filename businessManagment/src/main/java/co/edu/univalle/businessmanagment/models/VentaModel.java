@@ -131,10 +131,16 @@ public class VentaModel {
     public void calcularTotales(){
         totalNeto = 0;
         totalBruto = 0;
+        totalDescuento = 0;
+        subtotal = 0;
         for (DetalleVentaModel detalleVenta : detalle) {
+            subtotal += detalleVenta.getTotalBruto();
+            totalBruto += detalleVenta.getTotalBruto() - detalleVenta.getDescuento() ;
+            totalDescuento += detalleVenta.getDescuento();
             totalNeto += detalleVenta.getTotalNeto();
-            totalBruto += detalleVenta.getTotalBruto();
         }
+        totalIva = subtotal * 0.19d;
+        totalNeto += + totalIva;
     }
 
     @Override
