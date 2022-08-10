@@ -116,8 +116,8 @@ public class VentasService {
                 PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
 
             preparedStatement.setString(1, venta.getIdVenta());
-            preparedStatement.setString(2, venta.getUsuario().getIdentificacion());
-            preparedStatement.setString(3, venta.getCliente().getEmail());
+            preparedStatement.setString(2, venta.getUsuario().getEmail());
+            preparedStatement.setString(3, venta.getCliente().getIdentificacion());
             preparedStatement.setDouble(4, venta.getSubtotal());
             preparedStatement.setDouble(5, venta.getTotalIva());
             preparedStatement.setDouble(6, venta.getTotalBruto());
