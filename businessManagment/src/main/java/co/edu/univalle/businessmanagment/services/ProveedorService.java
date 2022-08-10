@@ -25,7 +25,7 @@ public class ProveedorService {
     
     public ProveedorModel findProveedorByIdentificacion (String id) throws SQLException {
         
-        final String SQL_SELECT = "SELECT * FROM business.proveedores where identificacion =? and is_deleted is false";
+        final String SQL_SELECT = "SELECT * FROM business.proveedores where identificacion = ? and is_deleted is false";
         
         try (Connection conn = DbConnection.getConnection(); 
             PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
@@ -43,14 +43,15 @@ public class ProveedorService {
             }
     }
     
-    public List<ProveedorModel> findProveedorByIdentificacionFilter  (String id) throws SQLException {
+    public List<ProveedorModel> findProveedorByFilter  (String id) throws SQLException {
         
-        final String SQL_SELECT = "SELECT * FROM business.proveedores WHERE identificacion LIKE '?' and is_deleted is false";
+        final String SQL_SELECT = "SELECT * FROM business.proveedores WHERE (identificacion LIKE ? OR nombre LIKE ?) and is_deleted is false";
         
         List <ProveedorModel> proveedores = new ArrayList<>();
         try (Connection conn = DbConnection.getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
             preparedStatement.setString(1, "%" + id + "%");
+            preparedStatement.setString(2, "%" + id + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 proveedores.add (resultsetToModel(resultSet));
@@ -63,7 +64,7 @@ public class ProveedorService {
     
     public List<ProveedorModel> getAllProveedores() throws SQLException {
         
-        final String SQL_SELECT = "SELECT * FROM bussines.proveedores WHERE is_deleted is false";
+        final String SQL_SELECT = "SELECT * FROM business.proveedores WHERE is_deleted is false";
         
         List<ProveedorModel> proveedor = new ArrayList<>();
         
@@ -86,7 +87,7 @@ public class ProveedorService {
         }
         
         int result = 0;
-        String sql = "UPDATE bussiness.proveedores"
+        String sql = "UPDATE business.proveedores"
                      + "SET nombre = ?" + "WHERE identificacion = ?";
         
         try (Connection conn = DbConnection.getConnection();
@@ -148,7 +149,7 @@ public class ProveedorService {
     }
     
     public boolean checkProveedorExist (String username, boolean countDeletes) throws SQLException {
-        String SQL_SELECT = "SLECT EXISTS ( SELECT 1 FROM business.proveedores WHERE identificacion = ?";
+        String SQL_SELECT = "SELECT EXISTS ( SELECT 1 FROM business.proveedores WHERE identificacion = ?";
         SQL_SELECT += !countDeletes ? " AND is_deleted is flase )" : ")";
         try (Connection conn = DbConnection.getConnection();
         PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {

@@ -7,6 +7,7 @@ package co.edu.univalle.businessmanagment;
 
 import co.edu.univalle.businessmanagment.controllers.ClienteController;
 import co.edu.univalle.businessmanagment.controllers.ProductoController;
+import co.edu.univalle.businessmanagment.controllers.ProveedorController;
 import co.edu.univalle.businessmanagment.controllers.UsuarioController;
 import co.edu.univalle.businessmanagment.controllers.VentaController;
 import co.edu.univalle.businessmanagment.views.Dashboard;
@@ -26,6 +27,7 @@ public class Main {
         UsuarioController usuarioController = new UsuarioController(home);
         ProductoController productoController = new ProductoController(home);
         VentaController ventaController = new VentaController(home);
+        ProveedorController proveedorController = new ProveedorController(home);
 //        home.setTitle("Sistema de Gestión");
 //        home.setVisible(true);
     }

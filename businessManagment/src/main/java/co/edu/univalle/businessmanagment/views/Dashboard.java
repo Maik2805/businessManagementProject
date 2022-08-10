@@ -7,12 +7,14 @@ package co.edu.univalle.businessmanagment.views;
 import co.edu.univalle.businessmanagment.models.ClienteModel;
 import co.edu.univalle.businessmanagment.models.DetalleVentaModel;
 import co.edu.univalle.businessmanagment.models.ProductoModel;
+import co.edu.univalle.businessmanagment.models.ProveedorModel;
 import co.edu.univalle.businessmanagment.models.UsuarioModel;
 import co.edu.univalle.businessmanagment.models.VentaModel;
 import co.edu.univalle.businessmanagment.models.virtuals.AvailableProductVModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.ClienteTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.DetalleVentaTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.ProductoTableModel;
+import co.edu.univalle.businessmanagment.views.tablemodels.ProveedorTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.UsuarioTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -35,6 +37,7 @@ public class Dashboard extends javax.swing.JFrame {
     UsuarioTableModel usuariosTableModel;
     ProductoTableModel productosTableModel;
     DetalleVentaTableModel detallesVentaTableModel;
+    ProveedorTableModel proveedoresTableModel;
 
     /**
      * Creates new form Dashboard
@@ -44,6 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
         usuariosTableModel = new UsuarioTableModel();
         productosTableModel = new ProductoTableModel();
         detallesVentaTableModel = new DetalleVentaTableModel();
+        proveedoresTableModel = new ProveedorTableModel();
         initComponents();
     }
 
@@ -65,6 +69,11 @@ public class Dashboard extends javax.swing.JFrame {
     public void setDetalleVentaTableData(List<DetalleVentaModel> detalles){
         detallesVentaTableModel.setDetalleVentaModels(detalles);
         detallesVentaTableModel.fireTableDataChanged();
+    }
+    
+    public void setProveedoresTableData (List <ProveedorModel> proveedores) {
+        proveedoresTableModel.setProveedorModel(proveedores);
+        proveedoresTableModel.fireTableDataChanged();
     }
 
     /* =========== USUARIOS IMPL ===========  */
@@ -340,6 +349,58 @@ public class Dashboard extends javax.swing.JFrame {
         txtTotalIvaVenta.setText(String.valueOf(venta.getTotalIva()));
         txtTotalBrutoVenta.setText(String.valueOf(venta.getTotalBruto()));
         txtTotalNetoVenta.setText(String.valueOf(venta.getTotalNeto()));
+    }
+    
+    /* ==================Proveedores IMPL=====================*/
+    public ProveedorModel getProveedorFromDatosUsuario() {
+        ProveedorModel proveedor = new ProveedorModel();
+        proveedor.setIdentificacion(txtIdentificacionProveedor.getText());
+        proveedor.setNombre(txtNombreProveedor.getText());
+        return proveedor;
+    }
+
+    public void setDatosProveedorFromProveedor(ProveedorModel proveedor) {
+        txtIdentificacionProveedor.setText(proveedor.getIdentificacion());
+        txtNombreProveedor.setText(proveedor.getNombre());
+    }
+
+    public void addActionListenerBtnAddProveedor(ActionListener listener) {
+        btnAddProveedor.addActionListener(listener);
+    }
+
+    public void addActionListenerBtnBuscarProveedor(ActionListener listener) {
+        btnBuscarProveedor.addActionListener(listener);
+    }
+
+    public void addActionListenerBtnEditarProveedor(ActionListener listener) {
+        btnEditarProveedor.addActionListener(listener);
+    }
+
+    public void addActionListenerBtnBorrarProveedor(ActionListener listener) {
+        btnBorrarProveedor.addActionListener(listener);
+    }
+
+    public ProveedorModel getProveedorSelectedOnProveedoresTable() {
+        int index = tablaProveedores.getSelectedRow();
+        if (index != -1) {
+            return proveedoresTableModel.getProveedorModelAt(index);
+        } else {
+            JOptionPane.showMessageDialog(this, "ERROR : Ningún proveedor Seleccionado");
+            return null;
+        }
+    }
+
+    public List<ProveedorModel> getProveedoresSelectedOnProveedoresTable() {
+        int[] index = tablaProveedores.getSelectedRows();
+        ArrayList<ProveedorModel> proveedoresSelected = new ArrayList();
+        for (int i : index) {
+            proveedoresSelected.add(proveedoresTableModel.getProveedorModelAt(i));
+        }
+        return proveedoresSelected;
+    }
+
+    public String getProveedoresFilterIdentificacion() {
+        return txtFiltroIdentificacionProveedor.getText();
     }
     /**
      * This method is called from within the constructor to initialize the form.
