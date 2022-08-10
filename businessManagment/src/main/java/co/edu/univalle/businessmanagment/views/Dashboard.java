@@ -13,9 +13,12 @@ import co.edu.univalle.businessmanagment.views.tablemodels.ClienteTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.DetalleVentaTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.ProductoTableModel;
 import co.edu.univalle.businessmanagment.views.tablemodels.UsuarioTableModel;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -291,6 +294,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         backgroundDashboard = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         listadoOpciones = new javax.swing.JTabbedPane();
         panelInicio = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -424,7 +428,8 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaProductosVenta = new javax.swing.JTable();
-        btnAddVenta1 = new javax.swing.JButton();
+        btnGuardarVenta = new javax.swing.JButton();
+        btnRefrescarVentas = new javax.swing.JButton();
         panelListaVentas = new javax.swing.JPanel();
         registroVentas1 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -442,6 +447,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnProductos = new javax.swing.JButton();
         btnVentas = new javax.swing.JButton();
         btnRegistroVentas = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -450,12 +456,29 @@ public class Dashboard extends javax.swing.JFrame {
         backgroundDashboard.setBackground(new java.awt.Color(255, 255, 255));
         backgroundDashboard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        backgroundDashboard.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
+
         listadoOpciones.setBackground(new java.awt.Color(255, 255, 255));
+        listadoOpciones.setForeground(new java.awt.Color(102, 102, 102));
+        listadoOpciones.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         panelInicio.setBackground(new java.awt.Color(255, 255, 255));
         panelInicio.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto", 3, 24)); // NOI18N
         jLabel6.setText("Bienvenido al programa");
 
         jLabel22.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -471,16 +494,22 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel25.setText("Este programa facilitará la gestión de cada proceso realizado por la empresa ya que ");
 
         jLabel26.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel26.setText("permite llevar un control completo y detallado de su empresa.");
+        jLabel26.setText("permite llevar un control completo y detallado.");
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/inicio.png"))); // NOI18N
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout panelInicioLayout = new javax.swing.GroupLayout(panelInicio);
         panelInicio.setLayout(panelInicioLayout);
         panelInicioLayout.setHorizontalGroup(
             panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInicioLayout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addGap(105, 105, 105)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 105, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
                         .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -488,36 +517,33 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel22)
-                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelInicioLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(142, 142, 142)))
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(125, 125, 125))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addGap(135, 135, 135))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInicioLayout.createSequentialGroup()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(102, 102, 102))))
+                        .addComponent(jLabel6)
+                        .addGap(269, 269, 269))))
         );
         panelInicioLayout.setVerticalGroup(
             panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInicioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24)
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel26)
-                .addGap(164, 164, 164)
+                .addGap(140, 140, 140)
                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(73, 73, 73))
         );
@@ -528,7 +554,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        datosUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Usuario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        datosUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Datos Usuario", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         txt1.setBackground(new java.awt.Color(255, 255, 255));
         txt1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -548,7 +574,16 @@ public class Dashboard extends javax.swing.JFrame {
         txt6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txt6.setText("Teléfono:");
 
+        listTipoIdentificacionUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         listTipoIdentificacionUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.C", "C.E", "NIT", "PEP" }));
+
+        txtNombreUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtApellidoUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtIdentificacionUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtTelefonoUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         btnAddUsuario.setBackground(new java.awt.Color(255, 255, 255));
         btnAddUsuario.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -566,6 +601,8 @@ public class Dashboard extends javax.swing.JFrame {
         txt10.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txt10.setText("Email:");
 
+        txtEmailUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
         javax.swing.GroupLayout datosUsuariosLayout = new javax.swing.GroupLayout(datosUsuarios);
         datosUsuarios.setLayout(datosUsuariosLayout);
         datosUsuariosLayout.setHorizontalGroup(
@@ -573,39 +610,35 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(datosUsuariosLayout.createSequentialGroup()
                 .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosUsuariosLayout.createSequentialGroup()
-                        .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(datosUsuariosLayout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(txt1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtApellidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt3)
-                                .addGap(7, 7, 7))
-                            .addGroup(datosUsuariosLayout.createSequentialGroup()
-                                .addGap(182, 182, 182)
-                                .addComponent(txt6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(datosUsuariosLayout.createSequentialGroup()
-                                .addComponent(listTipoIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txt4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(datosUsuariosLayout.createSequentialGroup()
                         .addGap(320, 320, 320)
-                        .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(btnAddUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(datosUsuariosLayout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(txt6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTelefonoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(txt10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEmailUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(datosUsuariosLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(txt1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApellidoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(listTipoIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         datosUsuariosLayout.setVerticalGroup(
             datosUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,7 +667,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelUsuario.add(datosUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 740, -1));
 
         registroUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        registroUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Usuarios", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        registroUsuarios.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Registro de Usuarios", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
         registroUsuarios.setForeground(new java.awt.Color(102, 102, 102));
 
         tablaUsuarios.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
@@ -644,6 +677,9 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel3.setText("Identificación:");
 
+        txtFiltroIdentificacionUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        txtFiltroIdentificacionUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtFiltroIdentificacionUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtFiltroIdentificacionUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFiltroIdentificacionUsuarioActionPerformed(evt);
@@ -700,17 +736,17 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(registroUsuariosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(registroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(registroUsuariosLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registroUsuariosLayout.createSequentialGroup()
-                        .addGap(0, 174, Short.MAX_VALUE)
+                        .addGap(0, 166, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFiltroIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(175, 175, 175))
-                    .addGroup(registroUsuariosLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addGap(185, 185, 185))))
             .addGroup(registroUsuariosLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
                 .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -728,21 +764,21 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(btnBuscarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(txtFiltroIdentificacionUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(registroUsuariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         panelUsuario.add(registroUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 740, -1));
 
-        btnVolverUsuario.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolverUsuario.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverUsuario.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverUsuario.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverUsuario.setText("Volver");
         btnVolverUsuario.setBorder(null);
@@ -765,7 +801,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelCliente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosClientes.setBackground(new java.awt.Color(255, 255, 255));
-        datosClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        datosClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Datos Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         txt5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txt5.setText("Nombre:");
@@ -783,6 +819,17 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel4.setText("E-mail:");
 
+        txtNombreCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtApellidoCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtIdentificacionCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtTelefonoCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtEmailCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnAddCliente.setBackground(new java.awt.Color(255, 255, 255));
@@ -861,11 +908,14 @@ public class Dashboard extends javax.swing.JFrame {
         panelCliente.add(datosClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, -1, -1));
 
         registroClientes.setBackground(new java.awt.Color(255, 255, 255));
-        registroClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        registroClientes.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Registro de Clientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel5.setText("Identificación: ");
 
+        txtFiltroIdentificacionCliente.setBackground(new java.awt.Color(255, 255, 255));
+        txtFiltroIdentificacionCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtFiltroIdentificacionCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtFiltroIdentificacionCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFiltroIdentificacionClienteActionPerformed(evt);
@@ -919,15 +969,7 @@ public class Dashboard extends javax.swing.JFrame {
         registroClientesLayout.setHorizontalGroup(
             registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroClientesLayout.createSequentialGroup()
-                .addContainerGap(177, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(175, 175, 175))
-            .addGroup(registroClientesLayout.createSequentialGroup()
-                .addGap(183, 183, 183)
+                .addGap(213, 213, 213)
                 .addComponent(btnEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -938,16 +980,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane4)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, registroClientesLayout.createSequentialGroup()
+                .addContainerGap(173, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(175, 175, 175))
         );
         registroClientesLayout.setVerticalGroup(
             registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroClientesLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFiltroIdentificacionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(registroClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -959,9 +1010,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         panelCliente.add(registroClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 740, 380));
 
-        btnVolverCliente.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolverCliente.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverCliente.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverCliente.setText("Volver");
         btnVolverCliente.setBorder(null);
@@ -984,7 +1035,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelProveedores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosProveedores.setBackground(new java.awt.Color(255, 255, 255));
-        datosProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Proveedor", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        datosProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Datos Proveedor", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         nombreProveedor.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         nombreProveedor.setText("Nombre:");
@@ -993,6 +1044,9 @@ public class Dashboard extends javax.swing.JFrame {
         idProveedor.setText("Identificación:");
         idProveedor.setToolTipText("");
 
+        txtNombreProveedor.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
+        txtIdentificacionProveedor.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtIdentificacionProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdentificacionProveedorActionPerformed(evt);
@@ -1043,7 +1097,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelProveedores.add(datosProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, -1, -1));
 
         registroProveedores.setBackground(new java.awt.Color(255, 255, 255));
-        registroProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        registroProveedores.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Registro de Proveedores\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         tablaProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1061,6 +1115,7 @@ public class Dashboard extends javax.swing.JFrame {
         identificacion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         identificacion.setText("Identificación:");
 
+        txtFiltroIdentificacionProveedor.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtFiltroIdentificacionProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFiltroIdentificacionProveedorActionPerformed(evt);
@@ -1110,7 +1165,7 @@ public class Dashboard extends javax.swing.JFrame {
         registroProveedoresLayout.setHorizontalGroup(
             registroProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroProveedoresLayout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
+                .addContainerGap(170, Short.MAX_VALUE)
                 .addComponent(identificacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFiltroIdentificacionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1118,14 +1173,17 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(btnBuscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(175, 175, 175))
             .addGroup(registroProveedoresLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(213, 213, 213)
                 .addComponent(btnEditarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRefrescarProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane3)
+            .addGroup(registroProveedoresLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         registroProveedoresLayout.setVerticalGroup(
             registroProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1147,9 +1205,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         panelProveedores.add(registroProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 740, -1));
 
-        btnVolverProveedores.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolverProveedores.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverProveedores.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverProveedores.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverProveedores.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverProveedores.setText("Volver");
         btnVolverProveedores.setBorder(null);
@@ -1172,7 +1230,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelProductos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosProductos.setBackground(new java.awt.Color(255, 255, 255));
-        datosProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Producto\n\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        datosProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Datos Producto\n\n", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         nombreProveedor1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         nombreProveedor1.setText("Nombre:");
@@ -1181,18 +1239,21 @@ public class Dashboard extends javax.swing.JFrame {
         idProveedor1.setText("ID Producto:");
         idProveedor1.setToolTipText("");
 
+        txtIdProducto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtIdProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdProductoActionPerformed(evt);
             }
         });
 
+        txtNombreProducto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtNombreProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreProductoActionPerformed(evt);
             }
         });
 
+        txtPrecioProducto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtPrecioProducto.setText("0");
         txtPrecioProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1214,6 +1275,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel2.setText("Estado Producto:");
 
+        listEstadoProducto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         listEstadoProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo", "Agotado" }));
 
         javax.swing.GroupLayout datosProductosLayout = new javax.swing.GroupLayout(datosProductos);
@@ -1264,7 +1326,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelProductos.add(datosProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
         registroProductos.setBackground(new java.awt.Color(255, 255, 255));
-        registroProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Productos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        registroProductos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Registro de Productos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         tablaProductos.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tablaProductos.setModel(productosTableModel);
@@ -1273,6 +1335,7 @@ public class Dashboard extends javax.swing.JFrame {
         idProducto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         idProducto.setText("ID Producto: ");
 
+        txtFiltroProducto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtFiltroProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFiltroProductoActionPerformed(evt);
@@ -1322,7 +1385,7 @@ public class Dashboard extends javax.swing.JFrame {
         registroProductosLayout.setHorizontalGroup(
             registroProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(registroProductosLayout.createSequentialGroup()
-                .addContainerGap(138, Short.MAX_VALUE)
+                .addContainerGap(140, Short.MAX_VALUE)
                 .addComponent(idProducto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFiltroProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1330,7 +1393,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(btnBuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(159, 159, 159))
             .addGroup(registroProductosLayout.createSequentialGroup()
-                .addGap(153, 153, 153)
+                .addGap(219, 219, 219)
                 .addComponent(btnEditarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1362,9 +1425,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         panelProductos.add(registroProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 740, -1));
 
-        btnVolverProductos.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolverProductos.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverProductos.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverProductos.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverProductos.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverProductos.setText("Volver");
         btnVolverProductos.setBorder(null);
@@ -1387,28 +1450,35 @@ public class Dashboard extends javax.swing.JFrame {
         panelVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         datosVenta.setBackground(new java.awt.Color(255, 255, 255));
-        datosVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Datos Venta", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        datosVenta.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Datos Venta", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel7.setText("ID Venta: ");
 
         txtIdVenta.setEditable(false);
+        txtIdVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel8.setText("ID Usuario: ");
 
+        listIdUsuario.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel9.setText("ID Cliente: ");
+
+        listIdCliente.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         jLabel16.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel16.setText("Cant.:");
 
+        txtCantidad.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtCantidad.setText("0");
 
         jLabel17.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel17.setText("Vlr Producto:");
 
         txtVlrProductoVenta.setEditable(false);
+        txtVlrProductoVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtVlrProductoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtVlrProductoVentaActionPerformed(evt);
@@ -1422,16 +1492,21 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel19.setText("Descuento:");
 
         txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel20.setText("Producto:");
+
+        listProducto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         jLabel21.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel21.setText("Total Bruto: ");
 
         txtTotalBruto.setEditable(false);
+        txtTotalBruto.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         txtTotalDescuento.setEditable(false);
+        txtTotalDescuento.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
 
         btnAddVenta.setBackground(new java.awt.Color(255, 255, 255));
         btnAddVenta.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
@@ -1449,56 +1524,51 @@ public class Dashboard extends javax.swing.JFrame {
         datosVenta.setLayout(datosVentaLayout);
         datosVentaLayout.setHorizontalGroup(
             datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosVentaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAddVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(288, 288, 288))
             .addGroup(datosVentaLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(datosVentaLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel20)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(listProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosVentaLayout.createSequentialGroup()
-                                .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(datosVentaLayout.createSequentialGroup()
-                                        .addComponent(listIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel7))
-                                    .addGroup(datosVentaLayout.createSequentialGroup()
-                                        .addComponent(listIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel16)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(datosVentaLayout.createSequentialGroup()
-                        .addGap(441, 441, 441)
-                        .addComponent(jLabel17)
+                            .addGroup(datosVentaLayout.createSequentialGroup()
+                                .addComponent(listProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel17))
+                            .addGroup(datosVentaLayout.createSequentialGroup()
+                                .addComponent(listIdUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7))
+                            .addGroup(datosVentaLayout.createSequentialGroup()
+                                .addComponent(listIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel16)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVlrProductoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE)))
-                .addGap(55, 55, 55))
-            .addGroup(datosVentaLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel21)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotalBruto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotalDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, datosVentaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAddVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(288, 288, 288))
+                        .addGroup(datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtVlrProductoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(55, 55, 55))
+                    .addGroup(datosVentaLayout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTotalBruto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTotalDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
         datosVentaLayout.setVerticalGroup(
             datosVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1534,11 +1604,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panelVentas.add(datosVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 700, 290));
+        panelVentas.add(datosVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 700, 270));
 
-        btnVolverVentas.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolverVentas.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverVentas.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverVentas.setText("Volver");
         btnVolverVentas.setBorder(null);
@@ -1561,6 +1631,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel13.setText("Total Neto:");
 
         txtTotalNetoVenta.setEditable(false);
+        txtTotalNetoVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtTotalNetoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalNetoVentaActionPerformed(evt);
@@ -1571,6 +1642,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel10.setText("Subtotal:");
 
         txtSubTotalVenta.setEditable(false);
+        txtSubTotalVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtSubTotalVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSubTotalVentaActionPerformed(evt);
@@ -1587,6 +1659,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel14.setText("Total Descuento:");
 
         txtTotalIvaVenta.setEditable(false);
+        txtTotalIvaVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtTotalIvaVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalIvaVentaActionPerformed(evt);
@@ -1594,6 +1667,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         txtTotalDescuentoVenta.setEditable(false);
+        txtTotalDescuentoVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtTotalDescuentoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalDescuentoVentaActionPerformed(evt);
@@ -1601,6 +1675,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
 
         txtTotalBrutoVenta.setEditable(false);
+        txtTotalBrutoVenta.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtTotalBrutoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalBrutoVentaActionPerformed(evt);
@@ -1617,30 +1692,27 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelTotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelTotalesLayout.createSequentialGroup()
-                        .addComponent(txtSubTotalVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelTotalesLayout.createSequentialGroup()
-                        .addComponent(txtTotalDescuentoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotalBrutoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(panelTotalesLayout.createSequentialGroup()
                 .addGroup(panelTotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelTotalesLayout.createSequentialGroup()
-                        .addGap(408, 408, 408)
-                        .addComponent(jLabel11)
+                        .addComponent(txtTotalDescuentoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotalIvaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTotalBrutoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelTotalesLayout.createSequentialGroup()
-                        .addGap(237, 237, 237)
+                        .addGap(57, 57, 57)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotalNetoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtTotalNetoVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelTotalesLayout.createSequentialGroup()
+                        .addGroup(panelTotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSubTotalVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelTotalesLayout.createSequentialGroup()
+                                .addGap(228, 228, 228)
+                                .addComponent(jLabel11)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTotalIvaVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         panelTotalesLayout.setVerticalGroup(
             panelTotalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1667,7 +1739,7 @@ public class Dashboard extends javax.swing.JFrame {
         panelVentas.add(panelTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 540, 700, 170));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
         tablaProductosVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1688,35 +1760,46 @@ public class Dashboard extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        panelVentas.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 700, 220));
+        panelVentas.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 700, 240));
 
-        btnAddVenta1.setBackground(new java.awt.Color(255, 255, 255));
-        btnAddVenta1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        btnAddVenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Guardar.png"))); // NOI18N
-        btnAddVenta1.setText("Guardar");
-        btnAddVenta1.setBorder(null);
-        btnAddVenta1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAddVenta1.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarVenta.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuardarVenta.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnGuardarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Guardar.png"))); // NOI18N
+        btnGuardarVenta.setText("Guardar");
+        btnGuardarVenta.setBorder(null);
+        btnGuardarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddVenta1ActionPerformed(evt);
+                btnGuardarVentaActionPerformed(evt);
             }
         });
-        panelVentas.add(btnAddVenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 730, 89, 31));
+        panelVentas.add(btnGuardarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 730, 89, 31));
+
+        btnRefrescarVentas.setBackground(new java.awt.Color(255, 255, 255));
+        btnRefrescarVentas.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        btnRefrescarVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Actualizar.png"))); // NOI18N
+        btnRefrescarVentas.setText("Refrescar");
+        btnRefrescarVentas.setBorder(null);
+        btnRefrescarVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panelVentas.add(btnRefrescarVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 730, 89, 31));
 
         listadoOpciones.addTab("Ventas", panelVentas);
 
         panelListaVentas.setBackground(new java.awt.Color(255, 255, 255));
 
         registroVentas1.setBackground(new java.awt.Color(255, 255, 255));
-        registroVentas1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 2), "Registro de Ventas", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+        registroVentas1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)), "Registro de Ventas", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Roboto", 1, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         tablaListadoVentas.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tablaListadoVentas.setModel(new javax.swing.table.DefaultTableModel(
@@ -1735,6 +1818,7 @@ public class Dashboard extends javax.swing.JFrame {
         idVenta1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         idVenta1.setText("ID Venta: ");
 
+        txtFiltroVenta1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtFiltroVenta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFiltroVenta1ActionPerformed(evt);
@@ -1798,9 +1882,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        btnVolverListadoVentas.setBackground(new java.awt.Color(153, 153, 153));
+        btnVolverListadoVentas.setBackground(new java.awt.Color(255, 255, 255));
         btnVolverListadoVentas.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnVolverListadoVentas.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolverListadoVentas.setForeground(new java.awt.Color(0, 0, 0));
         btnVolverListadoVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/volver.png"))); // NOI18N
         btnVolverListadoVentas.setText("Volver");
         btnVolverListadoVentas.setBorder(null);
@@ -1834,7 +1918,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(panelListaVentasLayout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addComponent(registroVentas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(btnVolverListadoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -1962,24 +2046,28 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout panelDerechoBotonesLayout = new javax.swing.GroupLayout(panelDerechoBotones);
         panelDerechoBotones.setLayout(panelDerechoBotonesLayout);
         panelDerechoBotonesLayout.setHorizontalGroup(
             panelDerechoBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDerechoBotonesLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerechoBotonesLayout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(panelDerechoBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerechoBotonesLayout.createSequentialGroup()
-                        .addGroup(panelDerechoBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegistroVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelDerechoBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(btnProveedores, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(btnVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(btnProductos, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(btnRegistroVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                         .addGap(35, 35, 35))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerechoBotonesLayout.createSequentialGroup()
-                        .addComponent(jLabel15)
+                        .addGroup(panelDerechoBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15))
                         .addGap(18, 18, 18))))
         );
         panelDerechoBotonesLayout.setVerticalGroup(
@@ -1987,7 +2075,9 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(panelDerechoBotonesLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
                 .addComponent(btnUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2002,7 +2092,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(260, Short.MAX_VALUE))
         );
 
-        backgroundDashboard.add(panelDerechoBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 220, 810));
+        backgroundDashboard.add(panelDerechoBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 0, 230, 810));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2206,9 +2296,9 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVlrProductoVentaActionPerformed
 
-    private void btnAddVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVenta1ActionPerformed
+    private void btnGuardarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarVentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddVenta1ActionPerformed
+    }//GEN-LAST:event_btnGuardarVentaActionPerformed
 
     private void btnVolverListadoVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverListadoVentasMouseClicked
         listadoOpciones.setSelectedIndex(0);
@@ -2265,7 +2355,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnAddProveedor;
     private javax.swing.JButton btnAddUsuario;
     private javax.swing.JButton btnAddVenta;
-    private javax.swing.JButton btnAddVenta1;
     private javax.swing.JButton btnBorrarCliente;
     private javax.swing.JButton btnBorrarProducto;
     private javax.swing.JButton btnBorrarProveedor;
@@ -2281,11 +2370,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnEditarProducto;
     private javax.swing.JButton btnEditarProveedor;
     private javax.swing.JButton btnEditarUsuario;
+    private javax.swing.JButton btnGuardarVenta;
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnRefrescarClientes;
     private javax.swing.JButton btnRefrescarListadoVentas;
     private javax.swing.JButton btnRefrescarProveedores;
+    private javax.swing.JButton btnRefrescarVentas;
     private javax.swing.JButton btnRegistroVentas;
     private javax.swing.JButton btnUsuario;
     private javax.swing.JButton btnVentas;
@@ -2332,6 +2423,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -2341,6 +2433,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JComboBox<String> listEstadoProducto;
     private javax.swing.JComboBox<String> listIdCliente;
     private javax.swing.JComboBox<String> listIdUsuario;
